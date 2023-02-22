@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/css/myStyle.css">
+        <link rel="stylesheet" type="text/css" href="https://drakeomar.com/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+        <link href='//www.zingchart.com/css/zcDocs.css' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+        <script src="https://cdn.zinggrid.com/dev/zinggrid-dev.min.js"></script>
+  <style>
+
+    zing-grid[loading] {
+      height: 367px;
+    }
+  </style>
+        <!-- Embedded CSS Styling -->
+        <style>
+            body {
+                background-color: rgb(241, 241, 241);
+            }
+            .icon {
+                width: 50px;
+                height: 50px;
+                background-color: #eee;
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 39px
+            }
+
+            .icon-img {
+                width: 50px; 
+                height: 50px; 
+            }
+
+            .card-color {
+                /*background-color:rgb(247, 247, 247);*/
+                /*background-color: #dff0ee;*/
+                background-color: #e9f0ef;
+            }
+
+            .shadowing {
+                box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+            }
+
+            /* https://stackoverflow.com/questions/49554070/using-bootstrap-cards-as-a-hyperlink */
+            .stretched-link::after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                pointer-events: auto;
+                content: "";
+                background-color: rgba(0,0,0,0);
+            }
+
+            .chart--container {
+                height: 100%; 
+                width: 100%; 
+                min-height: 250px; 
+            }
+
+            .chart--container1 {
+                height: 100%; 
+                width: 100%; 
+                min-height: 250px; 
+            }
+
+            #circle-icon {
+                background: #ffc0c0;
+                width: 25%;
+                height: 75%;
+                border-radius: 50%;
+                line-height: 100px;
+                vertical-align: middle;
+                padding: 40px;
+                margin-top: 10px;
+                margin-bottom: 10px;  
+                margin: 10px; 
+                box-shadow: 0 0 0 5px #454754; 
+            }
+
+            #api-container{
+                max-height: 100px;
+                width: 100%; 
+            }
+
+            #trafficStatus{
+                height: 175px; 
+
+            }
+
+            .logout-button{
+              color: black;
+              padding: 1rem; 
+            }
+
+            #trafficStatusStr{
+                font-size: 24px; 
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- INDICATOR CONTAINERS -->
+        <div class="container-fluid h-100">
+            <div class="row">
+              <div class="col-1">
+
+              </div>
+              <div class="col-10">
+                <h1 class="m3 main-title text-center">DASHBOARD</h1>
+              </div>
+              <div class="col-1">
+                <a href="https://reporting.drakeomar.com/logout">
+                  <h4 class="logout-button">LOGOUT</h4>
+                </a>
+              </div>
+
+            </div>
+            <div class="row h-100">
+                
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-lg-2">
+                    
+                </div>
+
+                <div class="col-md-8 col-lg-8">
+                    
+
+                        <div class="card p-3 mb-2 shadowing card-color" id="healthCard">
+                            
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-2">
+                                  <div class="icon">
+                                    <img src="https://collector.drakeomar.com/img/health_icon.png" class="icon-img">
+                                  </div>
+                                </div>
+                                <div class="col-8">
+                                  <div class="d-flex justify-content-between">
+                                    <div class="d-flex flex-row align-items-center">
+                                        
+                                        
+                                    </div>
+                                    <div class="ms-2 c-details">
+                                        <h4 class="mb-0"> Performance </h6> <span>for the past week</span>
+                                    </div>
+                                    
+                                    
+    
+                                    <div class="ms-2 c-details">
+                                        <h6 class="mb-0"> </h6>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-2">
+                                  <div>
+                                    <img src="https://collector.drakeomar.com/img/successicon.png" style="height:40px" id="healthBadge">
+                                  </div>
+                                </div>
+                              </div>
+                                
+
+                                <div class="row h-100 mt-5">
+                                    
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="row h-100">
+                                            <div class="col-md-4 col-lg-4">
+                                                <div class="row h-100">
+                                                    <div class="col-md-12 pb-2">
+                                                        <div class="card h-100" style="height:100%">
+
+                                                            <div id="loadTimeChart" class="chart--container1">
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="card h-100 d-flex justify-content-between">
+                                                            <div class="d-flex flex-row align-items-center">
+                                                                <div id="circle-icon">
+                                                                    
+                                                                </div>
+                                                                <p id="apiStatus">
+                                                                    API CONNECTION IS OFF!
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-4">
+                                                <div class="row h-100">
+                                                    <div class="col-md-12 pb-2">
+                                                        <div class="card bg-success" >
+                                                            <zing-grid 
+                                                                caption="Top 5 Best Pages by Load Speed"
+                                                                layout="row"
+                                                                layout-controls id="bestPagesGrid">
+                                                            
+                                                            </zing-grid>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-4">
+                                                <div class="row h-100">
+                                                    <div class="col-md-12">
+                                                        <div class="card bg-success">
+                                                            <zing-grid 
+                                                                caption="Top 5 Worst Pages by Load Speed"
+                                                                layout="row"
+                                                                layout-controls id="worstPagesGrid">
+                                                            
+                                                            </zing-grid>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <a href="https://reporting.drakeomar.com/reports/performance" class="stretched-link"></a>
+                            </div>
+                            
+                        </div>
+                   
+                
+                </div>
+                
+
+                <div class="col-md-2 col-lg-2">
+
+                </div>
+    
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    <div class="card p-3 mb-2 mt-5 shadowing card-color" id="trafficCard">
+                            
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-2">
+                              <div class="icon">
+                                <img src="https://collector.drakeomar.com/img/traffic_icon.png" class="icon-img">
+                              </div>
+                            </div>
+                            <div class="col-8">
+                              <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row align-items-center">
+                                    
+                                    
+                                </div>
+                                <div class="ms-2 c-details">
+                                    <h4 class="mb-0" style="margin-left: 20%"> Traffic </h6> <span>for the past week</span>
+                                </div>
+                                
+                                
+
+                                <div class="ms-2 c-details">
+                                    <h6 class="mb-0"> </h6>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-2">
+                              <div>
+                                <img src="https://collector.drakeomar.com/img/successicon.png" style="height:40px" id="trafficBadge">
+                              </div>
+                            </div>
+                          </div>
+
+                            
+                            
+                            
+                                
+                            
+                            
+                            <div class="row h-100 mt-5">
+                                
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="row h-100">
+                                        <div class="col-md-6 col-lg-6">
+                                            <div class="row h-100">
+                                                <div class="col-md-12 pb-2">
+                                                    <div class="card bg-success h-100" style="height:100%">
+                                                        <div id="trafficLineChart" class="chart--container">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="card h-100">
+
+                                                          <div class="row">
+                                                            <div class="col-4">
+                                                              <img src="https://collector.drakeomar.com/img/greenarrow.png" id="trafficStatus">
+                                                            </div>
+                                                            <div class="col-3">
+                                                              <p id="trafficStatusStr" style="margin-top: 100%"> +0 </p>
+                                                            </div>
+                                                            <div class="col-5">
+                                                              
+                                                              <h5 style="margin-top: 25%">Website Visits <br>this week <br>vs<br> last week</h5>
+                                                            </div>
+                                                          </div>
+                                                           
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-lg-6">
+                                            <div class="card h-100">
+                                                <div id="topPagesChart" class="chart--container">
+                                                    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+
+                            </div>
+                            <a href="https://reporting.drakeomar.com/reports/traffic" class="stretched-link"></a>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                
+
+                <div class="col-md-6 col-lg-6">
+                    <div class="card p-3 mb-2 mt-5 shadowing card-color" id="activityCard">
+                            
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-2">
+                              <div class="icon">
+                                <img src="https://collector.drakeomar.com/img/activity_icon.png" class="icon-img">
+                              </div>
+                            </div>
+                            <div class="col-8">
+                              <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row align-items-center">
+                                    
+                                    
+                                </div>
+                                <div class="ms-2 c-details">
+                                    <h4 class="mb-0" style="margin-left:20%"> Activity </h6> <span>for the past week</span>
+                                </div>
+                                
+                                
+
+                                <div class="ms-2 c-details">
+                                    <h6 class="mb-0"> </h6>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-2">
+                              <div>
+                                <img src="https://collector.drakeomar.com/img/successicon.png" style="height:40px" id="activityBadge">
+                              </div>
+                            </div>
+                          </div>
+
+
+                            <div class="row h-100 mt-5">
+                                
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="row h-50">
+                                        <div class="col-md-3 col-lg-3">
+
+                                        </div>
+                                        <div class="col-md-6 col-lg-6">
+                                          <div class="row h-100">
+                                            <div class="col-md-12 pb-2">
+                                                <div class="card h-100" style="height:100%">
+                                                    <p class="text-center">Overall Bounce Rate</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <div class="card h-100 mb-2">
+                                                    <div id="bounceRateGaugeChart" class="chart--container">
+                                                      
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-3 col-lg-3">
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row h-50">
+                                      <div class="col-md-1 col-lg-1">
+
+                                      </div>
+                                      <div class="col-md-10 col-lg-10">
+                                        <div class="card h-100">
+                                            <div id="activityChart" class="chart--container">
+                                                <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref"></a>
+                                            </div>
+
+                                            
+                                        </div>
+                                      </div>
+                                      <div class="col-md-1 col-lg-1">
+
+                                      </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <a href="https://reporting.drakeomar.com/reports/activity" class="stretched-link"></a>
+                        </div>
+                        
+                    </div>
+                </div>
+    
+            </div>
+            
+            
+            <div class="row h-100">
+                <div class="col-md-3 col-lg-3">
+                    <div class="row h-100">
+                        <div class="col-12">
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-9 col-lg-9 mb-5">
+                    <div class="row h-100">
+                        <div class="col-md-8 col-lg-8">
+                            <div class="row h-100">
+                                <div class="col-md-12 pb-2">
+                                    <h3 class="text-center"> REPORTS: </h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"> <a href="https://reporting.drakeomar.com/reports/performance">Website Health and Performance</a></li>
+                                        <li class="list-group-item"> <a href="https://reporting.drakeomar.com/reports/traffic">Website Traffic</a></li>
+                                        <li class="list-group-item"> <a href="https://reporting.drakeomar.com/reports/activity">User Activity</a></li>
+                                      </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+
+    <script>
+
+const healthBadge = document.getElementById("healthBadge"); 
+const trafficBadge = document.getElementById("trafficBadge"); 
+const activityBadge = document.getElementById("activityBadge"); 
+const healthCard = document.getElementById("healthCard"); 
+const trafficCard = document.getElementById("trafficCard"); 
+const activityCard = document.getElementById("activityCard"); 
+let getBounceData = async() => { 
+
+await fetch('https://drakeomar.com/api/charts/bounce-rate')
+.then(res => res.json())
+.then(results => {
+    console.log(results); 
+            let chartConfig1 = {
+  type: 'bar',
+  title: {
+    text: 'Bounce Rate per Page'
+  },
+  scaleX: {
+    values: [results[0][1][0],results[0][1][0], results[0][2][0], results[0][3][0], results[0][4][0]]
+  },
+  plot: {
+    cursor: 'pointer',
+    selectedState: {
+      backgroundColor: '#1DE9B6',
+      borderColor: 'grey',
+      borderWidth: '4px'
+    },
+    selectionMode: 'plot'
+  },
+  series: [
+    {
+      values: [results[0][0][1], results[0][1][1], results[0][2][1], results[0][3][1], results[0][4][1]],
+      backgroundColor: '#009688'
+    }
+  ]
+};
+
+
+var chartConfig2 = {
+  "type":"gauge",
+  "scale-r":{
+    "aperture":200,
+    "values":"0:100:20",
+    "center":{
+      "size":5,
+ 	    "background-color":"#66CCFF #FFCCFF",
+ 	    "border-color":"none"
+    },
+    "ring":{
+      "size":25,
+      "rules":[
+            {
+              "rule":"%v >= 0 && %v <= 20",
+ 	            "background-color":"#72f79c"
+            },
+            {
+              "rule":"%v >= 20 && %v <= 40",
+ 	            "background-color":"#72f79c"
+            },
+            {
+              "rule":"%v >= 40 && %v <= 60",
+ 	            "background-color":"#f7ea72"
+            },
+            {
+              "rule":"%v >= 60 && %v <= 80",
+ 	            "background-color":"#ed9d74"
+            },
+            {
+              "rule":"%v >= 80 && %v <=100",
+              "background-color":"#ed7474"
+            }
+          ]
+        },
+    "guide":{
+      //"background-color":"#66CCFF #FFCCFF",
+      "alpha":0.2
+    },
+    "tick":{
+      "line-color":"#66CCFF",
+      "line-style":"solid", //solid, dashed, or dotted
+      "line-width":3,
+      "size":15,
+      "placement":"inner" //outer, inner, or cross
+    },
+    "minor-ticks":4,  //Specify the NUMBER of minor tick marks.
+    "minor-tick":{    //And then STYLE your minor tick markers.
+      "line-color":"#FFFFFF",
+      "line-style":"solid", //solid, dashed, or dotted
+      "line-width":2,
+      "size":10,
+      "placement":"inner" //outer, inner, or cross
+    }
+  },
+  "plot":{
+    "csize":"5%",
+    "size":"100%",
+    "background-color":"#000000",
+    "valueBox": {
+      text: `%v`, // default
+      fontSize: '35px',
+      placement: 'center',
+      rules: [
+        {
+          text: '%v<br>Bad',
+          rule: '%v >= 80',
+        },
+        {
+          text: '%v<br>Fair',
+          rule: '%v < 80 && %v > 60',
+        },
+        {
+          text: '%v<br>Okay',
+          rule: '%v < 60 && %v > 20',
+        },
+        {
+          text: '%v<br>Excellent',
+          rule: '%v < 40',
+        },
+      ],
+    },
+  },
+  "series":[
+    {"values":[results[1]]}
+  ]
+};
+
+if(results[1] > 80){
+  activityBadge.src = "https://collector.drakeomar.com/img/erroricon.png"
+  activityCard.style.backgroundColor = '#f59595'; 
+}else if(results[1] > 40){
+  activityBadge.src = "https://collector.drakeomar.com/img/warningicon.png"
+  activityCard.style.backgroundColor = '#f59595'; 
+}else{
+  activityBadge.src = "https://collector.drakeomar.com/img/successicon.png"
+  activityCard.style.backgroundColor = '#43e8ac'; 
+}
+
+zingchart.render({
+  id: 'bounceRateBarChart',
+  data: chartConfig1,
+  height: '100%',
+  width: '100%',
+});
+
+zingchart.render({
+  id: 'bounceRateGaugeChart',
+  data: chartConfig2,
+  height: '100%',
+  width: '100%',
+});
+})};
+
+
+getBounceData(); 
+
+setInterval(async function(){
+    const response = await fetch("https://drakeomar.com/api/static/general/1").catch(err =>{
+    console.log(err); 
+    console.log("CAUGHT"); 
+    document.getElementById("circle-icon").style.backgroundColor = "red"; 
+  }).then(function(response) {
+
+    //set status light
+    if (response.status >= 400) {
+        console.log(response.status); 
+        //red status light 
+        document.getElementById("apiStatus").innerText = "API CONNECTION IS OFF!"
+        console.log("TURNED OFF"); 
+        document.getElementById("circle-icon").style.backgroundColor = "red"; 
+        document.getElementById("apiStatus").innerText = "API CONNECTION IS OFF!"
+        
+    }else{
+        //green status light 
+        document.getElementById("circle-icon").style.backgroundColor = "#34c95f"; 
+        document.getElementById("apiStatus").innerText = "API CONNECTION IS ON!"
+    }
+    return response.json();
+  });
+  }, 1000);     
+        
+  const bestPages = document.getElementById("bestPagesGrid"); 
+  const worstPages = document.getElementById("worstPagesGrid")
+  /** fetch page load data for zinggrid*/ 
+fetch('https://drakeomar.com/api/charts/page-load')
+  .then(res => res.json())
+  .then(data => {
+    console.log(data); 
+    console.log("FETCH DATA ^");
+
+    let modifiedData = []; 
+    let modifiedData2 = [];
+    let count = 0; 
+
+    console.log(data[0][0])
+    for(let key in data[0]){
+      console.log(key); 
+      let tmp = parseInt(key, 10); 
+      count = tmp + 1; 
+      let str = data[0][key]["url"];
+      if(str != "N/A"){str = str.substring(8, str.length)}
+      modifiedData.push({ "URL": str});
+      console.log(data[0][key]);
+    }
+    count = 0; 
+    for(let key in data[1]){
+      console.log(key); 
+      console.log(key + 1);
+      let tmp = parseInt(key, 10); 
+      count = tmp + 1; 
+      modifiedData2.push({"URL": data[1][key]["url"]});
+      console.log(data[1][key]);
+    }
+    bestPages.setData(modifiedData);
+    worstPages.setData(modifiedData2); 
+  })
+  .catch(err => console.error('--- Error In Fetch Occurred ---', err));
+
+  let getActivityData = async() => { 
+
+await fetch('https://drakeomar.com/api/charts/bar')
+.then(res => res.json())
+.then(results => {
+    console.log(results); 
+let activityConfig = {
+    type: 'bar',
+    backgroundColor: '#ffffff',
+    title: {
+        text: 'User Interactive Data - Clicks and Keystrokes Per Day',
+        align: 'right',
+        fontColor: '#1e2c30',
+        fontFamily: 'Lato',
+        fontSize: '16px',
+        padding: '15px',
+    },
+    
+    subtitle: {
+      text: 'Clicks and Keystrokes',
+      //align: 'center',
+      fontColor: '#1e2c30',
+      fontFamily: 'Lato',
+      fontSize: '12px',
+      padding: '20px'
+    },
+    legend: {
+        align: 'left',
+        padding: '15px',
+        borderWidth: '2px',
+        borderColor: '#70e6cc', 
+        item: {
+            fontColor: '#777',
+        },
+        layout: 'x2',
+        marker: {
+            borderRadius: '50px',
+        },
+    },
+    plot: {
+        tooltip: {
+            visible: false,
+        },
+        animation: {
+            effect: 'ANIMATION_EXPAND_BOTTOM',
+            method: 'ANIMATION_STRONG_EASE_OUT',
+            sequence: 'ANIMATION_BY_NODE',
+            speed: 275,
+        },
+        backgroundColor: '#1e2c30',
+        barSpace: '2px',
+        marker: {
+            size: 3.5,
+        },
+    },
+    
+    scaleX: {
+        minValue: results[0],
+        step: 86400000,
+        guide: {
+            lineColor: '#D7D8D9',
+            lineGapSize: '4px',
+            lineStyle: 'dotted',
+            rules: [
+                {
+                    rule: '%i == 0',
+                    visible: false,
+                },
+            ],
+            visible: true,
+        },
+        item: {
+            padding: '5px',
+            fontColor: '#1e2c30',
+            fontFamily: 'Montserrat',
+        },
+        lineWidth: '0px',
+        margin: '20px',
+        offsetY: '-20px',
+        padding: '20px',
+        tick: {
+            lineColor: '#70e6cc',
+        },
+        transform: {
+            type: 'date',
+            all: '%m/%d/%y',
+        },
+    },
+    scaleY: {
+        guide: {
+            lineColor: '#D7D8D9',
+            lineGapSize: '4px',
+            lineStyle: 'dotted',
+            rules: [
+                {
+                    rule: '%i == 0',
+                    visible: false,
+                },
+            ],
+            visible: true,
+        },
+        item: {
+            padding: '0 10 0 0',
+            fontColor: '#1e2c30',
+            fontFamily: 'Montserrat',
+        },
+        lineWidth: '0px',
+        
+        tick: {
+            lineColor: '#D1D3D4',
+        },
+    },
+    crosshairX: {
+        lineColor: '#b6b6b6',
+        lineStyle: 'dashed',
+        marker: {
+            size: '4px',
+            visible: true,
+        },
+        plotLabel: {
+            backgroundColor: 'white',
+            bold: true,
+            borderColor: '#e3e3e3',
+            borderRadius: '5px',
+            fontColor: '#2f2f2f',
+            fontFamily: 'Lato',
+            fontSize: '12px',
+            padding: '15px',
+            shadow: true,
+            shadowAlpha: 0.2,
+            shadowBlur: 5,
+            shadowColor: '#a1a1a1',
+            shadowDistance: 4,
+            textAlign: 'right',
+        },
+        scaleLabel: {
+            backgroundColor: '#FBFCFE',
+            bold: true,
+            callout: false,
+            fontColor: '#1E5D9E',
+            fontSize: '16px',
+            paddingTop: '2px',
+        },
+        trigger: 'move',
+    },
+    series: [
+        {
+            text: 'Keystrokes',
+            values: results[1],
+            backgroundColor: '#4e899c',
+        },
+        {
+            text: 'Clicks',
+            values: results[2],
+            backgroundColor: '#9a40b3',
+        },
+    ],
+};
+
+zingchart.render({
+    id: 'activityChart',
+    data: activityConfig,
+    height: '100%',
+    width: '100%',
+});})}
+
+getActivityData(); 
+
+        var myConfig = {
+  type: 'line',
+  scaleX: {
+    guide: {
+      backgroundColor: '#ffe6e6 #ffcccc',
+      lineColor: 'red',
+      lineStyle: 'solid',
+      lineWidth: 1,
+      visible: true
+    }
+  },
+  scaleY: {
+    guide: {
+      visible: false
+    }
+  },
+  plot: {
+    aspect: 'spline'
+  },
+  series: [{
+      values: [
+        38.2, 96.3, 53.6, 27.4, 14.1, 81.4, 31.1, 70.9, 54.4, 5.2,
+        36.3, 80.4, 50.5, 35.3, 30.5, 64.3, 10.5, 27.2, 83.9, 91.3
+      ],
+      lineColor: '#673AB7',
+      marker: {
+        backgroundColor: '#673AB7'
+      }
+    },
+    {
+      values: [
+        51.9, 8.1, 73.6, 37.4, 36.1, 57.4, 96.1, 37.9, 69.4, 18.2,
+        66.3, 26.4, 72.5, 29.3, 61.5, 20.3, 71.5, 37.2, 49.9, 7.3
+      ],
+      lineColor: '#03A9F4',
+      marker: {
+        backgroundColor: '#03A9F4'
+      }
+    }
+  ]
+};
+let getLoadTimeData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/performance')
+    .then(res => res.json())
+    .then(results => {
+
+      if(results[1] <= 40){
+        healthBadge.src = "https://collector.drakeomar.com/img/successicon.png"
+        healthCard.style.backgroundColor = '#e9f0ef'; 
+      }else if(results[1] <= 70){
+        healthBadge.src = "https://collector.drakeomar.com/img/warningicon.png"
+        healthCard.style.backgroundColor = '#f59595'; 
+      }else{
+        healthBadge.src = "https://collector.drakeomar.com/img/erroricon.png"
+        healthCard.style.backgroundColor = '#f59595'; 
+      }
+
+      let loadTimeConfig = { graphset: [
+          
+          {
+        type: "gauge",
+        backgroundColor: '#ffffff',
+          height: "100%",
+          width: "100%", 
+          y:"0%",
+        globals: {
+          fontSize: 25
+        },
+        title: {
+        text: 'Overall (ms)',
+        bold: false,
+        fontColor: '#43e8ac',
+        y: '80%',
+      },
+        plotarea:{
+          margin: '80px 20px 0px 20px',
+          backgroundColor: '#ffffff',
+        },
+        plot:{
+          size:'100%',
+          backgroundColor: '#ffffff',
+          valueBox: {
+            placement: 'center',
+            text:'%v', //default
+            fontSize:35,
+            rules:[
+              {
+                rule: '%v <= 20',
+                text: '%v<br>EXCELLENT'
+              },
+              {
+                rule: '%v > 20 && %v <= 40',
+                text: '%v<br>Good'
+              },
+              {
+                rule: '%v > 40 && %v <= 70',
+                text: '%v<br>Fair'
+              },
+              {
+                rule: '%v > 70',
+                text: '%v<br>Bad'
+              }   
+            ]
+          }
+        },
+        tooltip:{
+          borderRadius:5
+        },
+        scaleR:{
+          aperture:180,
+          minValue:0,
+          maxValue:110,
+          step:10,
+          center:{
+            visible:false
+          },
+          tick:{
+            visible:false
+          },
+          item:{
+            offsetR:0,
+            fontColor: "#43e8ac",
+            rules:[
+              {
+                rule:'%i == 9',
+                offsetX:15
+              }
+            ]
+          },
+          labels:['0','10','20','30','40','50','','75','','','100','110'],
+          ring:{
+            size:50,
+            rules:[
+              {
+                rule:'%v > 70',
+                backgroundColor:'#E53935'
+              },
+              {
+                rule:'%v > 40 && %v <= 70',
+                backgroundColor:'#e88b43'
+              },
+              {
+                rule:'%v > 20 && %v <= 40',
+                backgroundColor:'#e8d243'
+              },
+              {
+                rule:'%v <= 20',
+                backgroundColor:'#43e8ac'
+              }      
+            ]
+          }
+        },
+        series : [
+          {
+            values : [results[1]], // starting value
+            backgroundColor:'black',
+            indicator:[10,10,10,10,0.75],
+            animation:{  
+              effect:2,
+              method:1,
+              sequence:4,
+              speed: 900
+          },
+          }
+        ]
+      }]};
+        zingchart.render({ 
+            id : 'loadTimeChart', 
+            data : loadTimeConfig, 
+            height: '100%', 
+            width: '100%'
+        });
+  })};
+// DEFINE DATA
+// -----------------------------
+getLoadTimeData(); 
+
+let getTopPagesData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/page-traffic')
+  .then(res => res.json())
+  .then(results => {
+  	// Use setdata to instantiate the chart
+  	a = results; 
+    console.log(results); 
+    let trafficLineData = {
+  type: 'area',
+  title: {
+        text: 'Total Website Traffic',
+        align: 'center',
+        fontColor: '#1e2c30',
+        fontFamily: 'Lato',
+        fontSize: '16px',
+        padding: '15px',
+    },
+  globals: {
+    fontColor: 'var(--fontColor)',
+    fontFamily: 'Roboto',
+    fontSize: '16px',
+  },
+  title: {
+    text: 'This Week',
+    align: 'center',
+    fontColor: 'var(--fontColor)',
+    fontSize: '14px',
+    fontWeight: 'normal',
+    margin: '10px 10px 0px 2rem',
+  },
+  plot: {
+    
+    aspect: 'spline',
+  },
+  plotarea: {
+    margin: '60px 60px 60px 60px',
+  },
+  scaleX: {
+    
+    minValue: new Date().getTime() - (7*86400000),
+    item: {
+      alpha: '0.4',
+      fontSize: '16px',
+    },
+    lineWidth: '0px',
+    step: '1day',
+    tick: {
+      visible: false,
+    },
+    timeZone: 0,
+    transform: {
+      type: 'date',
+      all: '%m/%d',
+    },
+    utf: true,
+  },
+  scaleY: {
+    label: {
+      text: '# of Visits',
+      borderColor: '#e9f0ef',
+      borderRadius: 3,
+      borderWidth: 1,
+      fontFamily: 'Georgia',
+      fontSize: 16,
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      padding: '5px 20px',
+      margin: '10px 10px 10px 10px'
+    },
+    guide: {
+      lineColor: 'var(--gray)',
+      lineStyle: 'solid',
+    },
+    item: {
+      alpha: '0.4',
+      fontSize: '16px',
+    },
+    lineWidth: '0px',
+    tick: {
+      visible: false,
+    },
+  },
+  series: [
+    {
+      values: [results[1]["day1"], 
+               results[1]["day2"],
+               results[1]["day3"],
+               results[1]["day4"],
+               results[1]["day5"],
+               results[1]["day6"],
+               results[1]["day7"]],
+      alpha: '0.9',
+      backgroundColor: '#a1f0df #fff',
+      lineColor: '#1c8a72',
+      lineWidth: '3px',
+      marker: {
+        visible: false,
+      },
+    },
+  ],
+};
+
+zingchart.render({
+  id: 'trafficLineChart',
+  data: trafficLineData,
+  height: '100%',
+  width: '100%',
+});
+    let topPagesConfig =   {
+      graphset: [{
+
+        type: 'hbar',
+      height: "75%",
+      title: {
+        text: 'Top 5 Pages By Visits',
+        align: 'center',
+        fontColor: '#1e2c30',
+        fontFamily: 'Lato',
+        fontSize: '16px',
+        padding: '15px',
+    },
+      scaleX: {
+    item: {
+      fontFamily: 'Roboto',
+    },
+    labels: ['Page #5', 'Page #4', 'Page #3', 'Page #2', 'Page #1'],
+    lineColor: '#DDD',
+    tick: {
+      visible: false,
+    },
+  },
+      series: [
+      { values: [results[2][4][1], 0, 0, 0, 0],
+        backgroundColor: "#e84354",
+        text: '#5 Page'
+      },
+      {
+        text: '#4 Page',
+        values: [0, 
+        results[2][3][1], 0, 
+        0, 0],
+        backgroundColor: "#e843cf",
+      },
+      {
+        text: '#3 Page',
+        values: [0,0, 
+        results[2][2][1], 
+        0, 0],
+        backgroundColor: "#43dde8",
+      },
+      {
+        text: '#2 Page',
+        values: [0,0, 
+        0, 
+        results[2][1][1], 0],
+        backgroundColor: "#d243e8",
+      },
+      {
+        text: '#1 Page',
+        values: [0,0,0,0,
+        results[2][0][1] 
+        ],
+        backgroundColor: "#43e8ac",
+      }]
+    
+      },
+      {
+      type: 'null',
+      backgroundColor: '#e9f0ef',
+      borderColor: '#384653',
+      borderRadius: '4px',
+      borderWidth: '1px',
+      height: '25%',
+      width: '96%',
+      x: '3%',
+      y: '70%',
+      title: {
+        text: `
+               #1. ${results[2][0][0].substring(8, results[2][0][0].length)}
+               #2. ${results[2][1][0].substring(8, results[2][1][0].length)}
+               #3. ${results[2][2][0].substring(8, results[2][2][0].length)}
+               #4. ${results[2][3][0].substring(8, results[2][3][0].length)}
+               #5. ${results[2][4][0].substring(8, results[2][4][0].length)}`,
+        backgroundColor: 'none',
+        fontColor: '#384653',
+        fontSize: '12px',
+        height: '70px',
+      },
+      /*
+      subtitle: {
+        text: '5920',
+        bold: true,
+        fontColor: '#dd655f',
+        fontSize: '24px',
+        height: '40px',
+        paddingTop: '25%',
+        textAlign: 'centefr',
+      },*/
+    }]
+    };
+      
+
+    const str = document.getElementById("trafficStatusStr");
+    const tStatus = document.getElementById("trafficStatus");
+
+    if( results[4]["thisWeek"] - results[4]["lastWeek"] < 0){
+      trafficBadge.src = "https://collector.drakeomar.com/img/warningicon.png"; 
+      str.innerText = (results[4]["thisWeek"] - results[4]["lastWeek"]).toString(); 
+      tStatus.src = "https://drakeomar.com/img/redarrow.png";
+      str.style.color = "red"; 
+
+      trafficCard.style.backgroundColor = '#f59595';
+    }else{
+      str.innerText = (results[4]["thisWeek"] - results[4]["lastWeek"]).toString(); 
+      tStatus.src = "https://drakeomar.com/img/greenarrow.png";
+      str.style.color = "green"; 
+    }
+
+    zingchart.render({ 
+            id : 'topPagesChart', 
+            data : topPagesConfig, 
+            height: '100%', 
+            width: '100%'
+        });
+  })};
+  getTopPagesData(); 
+
+let getPageLoadData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/page-load')
+  .then(res => res.json())
+  .then(results => {
+  	// Use setdata to instantiate the chart
+  	a = results; 
+    console.log(results); 
+    // CHART CONFIG
+    // -----------------------------
+    let pageLoadConfig = {
+      "graphset":[
+    {
+            "type":"grid",
+            "y":"3%",
+            "height":"100%",
+            "width":"100%",
+            "options":{
+                "col-labels":["Page Rank","URL","Connection Speed"],
+                "col-widths":["12%","75%","12%"],
+            },
+            "series":[
+                {
+                    "values":["#1", results[0][0]["url"], results[0][0]["speed"]]
+                },
+                {
+                    "values":["#2", results[0][1]["url"], results[0][1]["speed"]]
+                },
+                {
+                    "values":["#3", results[0][2]["url"], results[0][2]["speed"]]
+                },
+                {
+                    "values":["#4", results[0][3]["url"], results[0][3]["speed"]]
+                },
+                {
+                    "values":["#5", results[0][4]["url"], results[0][4]["speed"]]
+                },
+            ]
+              }
+      ]};
+
+    // RENDER CHARTS
+    // -----------------------------
+    zingchart.render({
+      id: 'pageLoadChart',
+      data: pageLoadConfig,
+      output: 'svg',
+      height: '100%',
+      width:'100%'
+    });
+  })};
+
+  getPageLoadData(); 
+zingchart.render({
+  id: 'myChart',
+  data: myConfig,
+  height: 400,
+  width: '100%'
+});
+
+
+    </script>
+</html>
+
+
+

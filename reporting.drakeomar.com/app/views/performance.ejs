@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/css/myStyle.css">
+        <link href='//www.zingchart.com/css/zcDocs.css' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+        <script src="https://cdn.zinggrid.com/dev/zinggrid-dev.min.js"></script>
+
+        <style>
+            .zc-body {
+              background: #003849;
+            }
+        
+            .chart--container {
+              height: 100%;
+              width: 100%;
+              min-height: 500px;
+              background-color: #659c9e;
+            }
+        
+            .chart-wrapper {
+                height: 50%; 
+            }
+            .chart--container1 {
+              height: 100%;
+              width: 100%;
+              min-height: 250px;
+              background-color: #659c9e;
+            }
+        
+            .defaultBox{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              width: 42%;
+              min-height: 200px;
+              padding: 0 1rem;
+              border-radius: 4px;
+              box-sizing: border-box;
+            }
+        
+            .boxWrapper {
+              display: flex;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              height: 600px;
+              padding: 16px 40px;
+            }
+        
+            .zc-ref {
+              display: none;
+            }
+        
+            .module {
+              background-color: #659c9e;
+            }
+
+            .module-light{
+              background-color: #a4dbca; 
+            }
+            /* Nav */
+        
+            .home-nav {
+              display: flex;
+              height: 5%;
+              justify-content: space-between;
+              align-items: center;
+            }
+        
+            .home-nav div {
+              padding: 0 40px;
+            }
+        
+            .home-nav svg {
+              fill: var(--white);
+            }
+        
+            .logout-button{
+                
+                color:white;
+            }
+            
+            .main-title{
+                color:white; 
+            }
+        
+            #circle-icon {
+                background: #ffc0c0;
+                width: 70%;
+                height: 60%;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 100px;
+                vertical-align: middle;
+                padding: 30px;
+                margin:auto; 
+                margin-top: 10px; 
+                box-shadow: 0 0 0 5px #454754; 
+            }
+
+            .homeIcon{
+              color: white; 
+
+            }
+        </style>
+
+    </head>
+
+    <body class="zc-body">
+        <!-- NAV -->
+        <nav class="home-nav mt-3">
+          <a href="https://reporting.drakeomar.com/test">
+            <div style="display: inline">
+              <img src="https://drakeomar.com/img/logo-trans.png" style="height:2rem" alt="HOME">
+              <h4 style="margin-left:30%" class="homeIcon"> HOME </h4>
+            </div>
+          </a>
+            
+            <div>
+                <h1 class="text-center main-title" style="margin-left:20%">Website Health & Performance</h1>
+            </div>
+            <div>
+                <a href="https://reporting.drakeomar.com/logout">
+                    <h4 class="logout-button">LOGOUT</h4>
+                </a>
+            </div>
+    
+        </nav>
+
+        <!-- MAIN CONTENT VIEW -->
+        <div class="container-fluid h-100">
+    
+            
+            <div class="row h-100">
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                  
+                    <div class="row h-25">
+                        <div class="col-12">
+                            <!-- WHITESPACE-->
+                        </div>
+                    </div>
+                    <div class="row h-50">
+                        <div class="col-12">
+                            <div class="card h-100">
+                              
+                                <div id="pageLoadChart" class="chart--container">
+                                    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+                                </div>
+                                <!--
+                                HELLO
+                                <zing-grid 
+                                  pager page-size="3"
+                                  caption="Page Load URLS"
+                                  layout="row"
+                                  layout-controls id="pageLoadGrid">
+
+                                </zing-grid>
+                              -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-xl-6">
+                    <div class="row h-25">
+                        <div class="col-12">
+                            <div class="card bg-success h-100">
+                                <div id="loadTimeChart" class="chart--container">
+                                    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row h-25">
+                      <div class="col-12">
+                          <!-- WHITESPACE-->
+                      </div>
+                  </div>
+                    <div class="row h-25">
+                        <div class="col-md-12 pb-2">
+                            <div class="card module h-100">
+                                <div class="card mt-3 module-light mb-3" style="max-width: 540px; margin:auto">
+                                    <div class="row no-gutters">
+                                      <div class="col-md-4">
+                                        <div id="circle-icon">
+                                            
+                                        </div>
+                                        
+                                      </div>
+                                      <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h3 class="card-title"> ON </h3>
+                                          <p class="card-text"></p>
+                                          <p class="card-text"><small class="text-muted">The connection to the Collector API is UP!</small></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                <div id="apiChart" class="chart--container">
+                                    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+                                </div>
+                                <div class="container-fluid">
+                                    <div id="start" class="btn">
+                                        Start
+                                    </div>
+                                    <div id="stop" class="btn">
+                                        Stop
+                                    </div>
+                                    <div id="clear" class="btn">
+                                        Clear
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <div class="row h-25">
+                        <div class="col-12">
+                            <!-- WHITESPACE -->
+                        </div>
+                    </div>
+                    <div class="row h-50">
+                        <div class="col-12">
+                            <div class="card h-100">
+
+                                <zing-grid 
+                                
+                                                                caption="Top 10 404 Errors by URL"
+                                                                layout="row"
+                                                                layout-controls id="error-grid">
+                                                            
+                                                            </zing-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZINGCHART JS CONFIGURATIONS AND RENDERING -->
+        <script>
+const zgRef = document.getElementById('error-grid');
+fetch('https://drakeomar.com/api/charts/errors')
+  .then(res => res.json())
+  .then(data => {
+    zgRef.setData(data)
+  })
+  .catch(err => console.error('--- Error In Fetch Occurred ---', err));
+
+const pageRankData = document.getElementById("pageLoadGrid"); 
+
+fetch('https://drakeomar.com/api/charts/page-load')
+  .then(res => res.json())
+  .then(data => {
+    console.log(data); 
+    console.log("FETCH DATA ^");
+
+    let modifiedData = []; 
+    let count = 0; 
+    console.log(data[0][0])
+    for(let key in data[0]){
+      console.log(key); 
+      let tmp = parseInt(key, 10); 
+      count = tmp + 1; 
+      modifiedData.push({"Rank": `#${count} BEST`, "URL": data[0][key]["url"], "Speed": data[0][key]["speed"]});
+      console.log(data[0][key]);
+    }
+    count = 0; 
+    for(let key in data[1]){
+      console.log(key); 
+      console.log(key + 1);
+      let tmp = parseInt(key, 10); 
+      count = tmp + 1; 
+      modifiedData.push({"Rank": `#${count} WORST`, "URL": data[1][key]["url"], "Speed": data[1][key]["speed"]});
+      console.log(data[1][key]);
+    }
+    pageRankData.setData(modifiedData)
+  })
+  .catch(err => console.error('--- Error In Fetch Occurred ---', err));
+
+//real-time feed random math function
+function realTimeFeed(callback) {
+  var tick = {};
+  let time2; 
+  let timeData; 
+  let time1 = performance.now();
+  fetch("https://drakeomar.com/api/static/general").catch(err =>{
+    console.log(err); 
+    console.log("CAUGHT"); 
+    document.getElementById("circle-icon").style.backgroundColor = "red"; 
+  }).then(function(response) {
+
+    //set status light
+    if (!response.ok || response.status >= 400) {
+        console.log(response.status); 
+        //red status light 
+        document.getElementById("circle-icon").style.backgroundColor = "red"; 
+    }else{
+        //green status light 
+        document.getElementById("circle-icon").style.backgroundColor = "#34c95f"; 
+    }
+    return response.json();
+  }).then(data => {
+    time2 = performance.now();
+    timeData = time2 - time1;
+    tick.plot0 = parseInt(timeData, 10);
+    callback(JSON.stringify(tick));
+    console.log(timeData); 
+  });
+  
+  let randomData = 10 + 990 * Math.random(); 
+  
+};
+
+// define top level feed control functions
+function clearGraph() {
+  zingchart.exec('apiChart', 'clearfeed')
+}
+function startGraph() {
+  zingchart.exec('apiChart', 'startfeed');
+}
+function stopGraph() {
+  zingchart.exec('apiChart', 'stopfeed');
+}
+
+// window:load event for Javascript to run after HTML
+// because this Javascript is injected into the document head
+window.addEventListener('load', () => {
+  // Javascript code to execute after DOM content
+  console.log("DOM CONTENT LOADED, adding event listeners"); 
+  //clear start stop click events
+  document.getElementById('clear').addEventListener('click', clearGraph);
+  document.getElementById('start').addEventListener('click', startGraph);
+  document.getElementById('stop').addEventListener('click', stopGraph);
+ 
+  // full ZingChart schema can be found here:
+  // https://www.zingchart.com/docs/api/json-configuration/
+  const apiConfig = {
+    //chart styling
+    type: 'line',
+    globals: {
+      fontFamily: 'Roboto',
+    },
+    backgroundColor: '#659c9e',
+    title: {
+      backgroundColor: '#a4dbca',
+      text: 'Real-Time Line Chart',
+      color: '#fff',
+      height: '30x',
+    },
+    plotarea: {
+      marginTop: '80px'
+    },
+    crosshairX: {
+      lineWidth: 4,
+      lineStyle: 'dashed',
+      lineColor: '#a4dbca',
+      marker : {
+        visible : true,
+        size : 9
+      },
+      plotLabel: {
+        backgroundColor: '#E3E3E5',
+        borderColor: '#a4dbca',
+        borderRadius:5,
+        padding:15,
+        fontSize: 15,
+        shadow : true,
+        shadowAlpha : 0.2,
+        shadowBlur : 5,
+        shadowDistance : 4,
+      },
+      scaleLabel: {
+        backgroundColor: '#424242',
+        padding:5
+      }
+    },
+    scaleY: {
+    guide: {
+      lineStyle: 'dashed'
+    },
+    item: {
+      fontColor: '#E3E3E5'
+    },
+    lineColor: '#E3E3E5',
+    minorGuide: {
+      alpha: 0.7,
+      lineColor: '#a4dbca',
+      lineStyle: 'dashed',
+      lineWidth: '1px',
+      visible: true
+    },
+    minorTick: {
+      lineColor: '#E3E3E5'
+    },
+    minorTicks: 1,
+    tick: {
+      lineColor: '#E3E3E5'
+    }
+  },scaleX: {
+    item: {
+      fontColor: '#E3E3E5'
+    },
+    lineColor: '#E3E3E5',
+    minorTick: {
+      lineColor: '#E3E3E5'
+    },
+    tick: {
+      lineColor: '#E3E3E5'
+    }
+  },
+    tooltip: {
+      visible: false
+    },
+    //real-time feed
+    refresh: {
+  type: 'feed',
+  transport: 'js',
+  url: 'realTimeFeed()',
+  interval: 1000,
+},
+    plot: {
+      shadow: 1,
+      shadowColor: '#a4dbca',
+      shadowDistance: '8px',
+      lineWidth:5,
+      hoverState: {visible: false},
+      marker:{ visible: false},
+      aspect:'spline'
+    },
+    series: [{
+      values: [],
+      lineColor: '#2be3a9',
+      text: 'Connection Speed'
+    }]
+  };
+
+  // render chart with width and height to
+  // fill the parent container CSS dimensions
+  zingchart.render({ 
+    id: 'apiChart', 
+    data: apiConfig, 
+    height: '100%', 
+    width: '100%',
+  }); 
+});
+
+let getLoadTimeData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/performance')
+    .then(res => res.json())
+    .then(results => {
+      let loadTimeConfig = { graphset: 
+        [
+          {
+            type: 'bar', 
+            backgroundColor: '#659c9e',
+            height: "100%",
+            width: "50%",
+            x: "3%",
+            y: "3%",
+            plot: {
+          
+          barSpace: 0.2,
+          barsSpaceLeft: 0.05,
+          barsSpaceRight: 0.05,
+          shadow: true,
+          shadowColor: '#111',
+          shadowDistance: 1,
+        },
+        title: {
+          text: "Connection Speed",
+          fontColor: "#43e8ac",
+        },
+        subtitle:{
+          text: "per Visit",
+          fontColor: "#43e8ac",
+        },
+        plotarea: {
+          margin: '100px 10px 80px 80px',
+          backgroundColor: '#659c9e',
+        },
+        scaleX: {
+          backgroundColor: '#659c9e',
+          label: {
+      text: 'Speed (ms)',
+      fontColor: '#e9f0ef',
+      fontFamily: 'Georgia',
+      fontSize: 16,
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      padding: '5px 20px',
+      margin: '40px'
+    },
+          values: [
+            0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110
+          ],
+          item: {
+            color: '#E3E3E5',
+            offsetX: '-5px',
+          },
+          lineWidth: '0px',
+          offsetStart: '50px',
+          offsetEnd: '20px',
+          tick: {
+            visible: false,
+          },
+        },
+        scaleY: {
+          label: {
+      text: '# of Visits',
+      borderColor: '#e9f0ef',
+      fontColor: '#e9f0ef',
+      borderRadius: 3,
+      borderWidth: 1,
+      fontFamily: 'Georgia',
+      fontSize: 16,
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      padding: '5px 20px',
+      margin: '10px 10px 10px 10px'
+    },
+          guide: {
+            lineStyle: 'dashed'
+          },
+          item: {
+            fontColor: '#E3E3E5'
+          },
+          lineColor: '#E3E3E5',
+          minorGuide: {
+            alpha: 0.7,
+            lineColor: '#a4dbca',
+            lineStyle: 'dashed',
+            lineWidth: '1px',
+            visible: true
+          },
+          minorTick: {
+            lineColor: '#E3E3E5'
+          },
+          minorTicks: 1,
+          tick: {
+            lineColor: '#E3E3E5'
+          }
+        },
+            series: [{ values: [results[0][0], results[0][1], results[0][2], results[0][3], results[0][4], results[0][5], results[0][6], results[0][7], results[0][8], results[0][9]]}]
+          },
+          {
+        type: "gauge",
+        backgroundColor: '#659c9e',
+          height: "100%",
+          width: "50%",
+          x:"50%", 
+          y:"0%",
+        globals: {
+          fontSize: 25
+        },
+        title: {
+        text: 'Overall',
+        bold: false,
+        fontColor: '#43e8ac',
+        y: '80%',
+      },
+        plotarea:{
+          margin: '80px 40px 80px 40px',
+          backgroundColor: '#659c9e',
+        },
+        plot:{
+          size:'100%',
+          backgroundColor: '#659c9e',
+          valueBox: {
+            placement: 'center',
+            text:'%v', //default
+            fontSize:35,
+            rules:[
+              {
+                rule: '%v <= 20',
+                text: '%v<br>EXCELLENT'
+              },
+              {
+                rule: '%v > 20 && %v <= 40',
+                text: '%v<br>Good'
+              },
+              {
+                rule: '%v > 40 && %v <= 70',
+                text: '%v<br>Fair'
+              },
+              {
+                rule: '%v > 70',
+                text: '%v<br>Bad'
+              }   
+            ]
+          }
+        },
+        tooltip:{
+          borderRadius:5
+        },
+        scaleR:{
+          aperture:180,
+          minValue:0,
+          maxValue:110,
+          step:10,
+          center:{
+            visible:false
+          },
+          tick:{
+            visible:false
+          },
+          item:{
+            offsetR:0,
+            fontColor: "#43e8ac",
+            rules:[
+              {
+                rule:'%i == 9',
+                offsetX:15
+              }
+            ]
+          },
+          labels:['0','10','20','30','40','50','','75','','','100','110'],
+          ring:{
+            size:50,
+            rules:[
+              {
+                rule:'%v > 70',
+                backgroundColor:'#E53935'
+              },
+              {
+                rule:'%v > 40 && %v <= 70',
+                backgroundColor:'#e88b43'
+              },
+              {
+                rule:'%v > 20 && %v <= 40',
+                backgroundColor:'#e8d243'
+              },
+              {
+                rule:'%v <= 20',
+                backgroundColor:'#43e8ac'
+              }      
+            ]
+          }
+        },
+        series : [
+          {
+            values : [results[1]], // starting value
+            backgroundColor:'black',
+            indicator:[10,10,10,10,0.75],
+            animation:{  
+              effect:2,
+              method:1,
+              sequence:4,
+              speed: 900
+          },
+          }
+        ]
+      }]};
+      zingchart.render({ 
+        id : 'loadTimeChart', 
+        data : loadTimeConfig, 
+        height: 500, 
+        width: '100%'
+      });
+  })};
+// DEFINE DATA
+// -----------------------------
+getLoadTimeData(); 
+let gcolors = [
+'#43e8ac',
+'#43e8ac',
+'#72C58F',
+'#95f595',
+'#d3edb7',
+  
+  '#A6D15B',
+  '#DDD324',
+  '#FCB800',
+  '#FC7300',
+  '#FE2901',
+  '#FD2300',
+  '#FF0000',
+];
+
+// HELPER METHODS
+// -----------------------------
+function rule_scaleX_item(p) {
+  return {
+    color: gcolors[p.index],
+  };
+}
+
+function rule_plot(p) {
+  let cindex = Math.round(p.value / 10);
+  let colors = gcolors.slice(0, cindex);
+  let stops = [],
+    step = parseFloat(Number(0.9 / colors.length).toFixed(2));
+  for (let i = 0; i < colors.length; i++) {
+    stops.push(parseFloat(Number(0.05 + i * step).toFixed(2)));
+  }
+  return {
+    gradientStops: stops.join(' '),
+    gradientColors: colors.join(' '),
+  };
+}
+
+let getPageLoadData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/page-load')
+  .then(res => res.json())
+  .then(results => {
+  	// Use setdata to instantiate the chart
+  	a = results; 
+    console.log(results); 
+    // CHART CONFIG
+    // -----------------------------
+    let pageLoadConfig = {
+      "graphset":[{
+      type: 'vbar',
+      width: '50%',
+      height: '60%',
+      globals: {
+        fontFamily: 'Lucida Sans Unicode',
+      },
+      backgroundColor: '#003849 #111111',
+      title: {
+        text: 'BEST 5 PAGES',
+        color: '#ffffff',
+        fontSize: '15px',
+        padding: '30px 5px',
+      },
+      plot: {
+        tooltip: {
+          text: '%plot-text IN %scale-key-text IS %node-value°',
+          backgroundColor: '#212121',
+          borderColor: '#000000',
+          borderWidth: '1px',
+          color: '#ffffff',
+          fontSize: '15px',
+          padding: '10px',
+          shadow: true,
+          shadowColor: '#424242',
+        },
+        barSpace: 0.2,
+        barsSpaceLeft: 0.05,
+        barsSpaceRight: 0.05,
+        borderColor: '#000',
+        borderWidth: '1px',
+        fillAngle: 270,
+        jsRule: 'rule_plot()',
+        shadow: true,
+        shadowColor: '#111',
+        shadowDistance: 1,
+      },
+      plotarea: {
+        margin: '100px 0px 40px 0px',
+        backgroundColor: '#a4dbca',
+      },
+      scaleX: {
+        values: [
+          '#1 BEST',
+          '#2 BEST',
+          '#3 BEST',
+          '#4 BEST',
+          '#5 BEST'
+        ],
+        item: {
+          color: 'green',
+        },
+        lineWidth: '0px',
+        offsetStart: '50px',
+        offsetEnd: '20px',
+        tick: {
+          visible: false,
+        },
+      },
+      scaleY: {
+        values: '0:110:10',
+        guide: {
+          items: [
+            {
+              backgroundColor: '#659c9e',
+            },
+            {
+              backgroundColor: '#a4dbca',
+            },
+          ],
+          lineColor: '#444444',
+          lineStyle: 'solid',
+        },
+        item: {
+          color: '#ffffff',
+          fontWeight: 900,
+          jsRule: 'rule_scaleX_item()',
+          offsetX: '40px',
+        },
+        refLine: {
+          visible: false,
+        },
+      },
+      series: [
+        {
+          text: 'AVE LOAD TIME',
+          values: [results[1][0]["speed"], results[1][1]["speed"], results[1][2]["speed"], results[1][3]["speed"], results[1][4]["speed"]],
+        },
+      ],
+
+    },{
+      type: 'vbar',
+      width: '50%',
+      height: '60%',
+      x: '50%',
+      y: '0%',
+      globals: {
+        fontFamily: 'Lucida Sans Unicode',
+      },
+      backgroundColor: '#003849 #111111',
+      title: {
+        text: 'WORST 5 PAGES',
+        color: '#ffffff',
+        fontSize: '15px',
+        padding: '30px 5px',
+      },
+      plot: {
+        tooltip: {
+          text: '%plot-text IN %scale-key-text IS %node-value ms',
+          backgroundColor: '#212121',
+          borderColor: '#000000',
+          borderWidth: '1px',
+          color: '#ffffff',
+          fontSize: '15px',
+          padding: '10px',
+          shadow: true,
+          shadowColor: '#424242',
+        },
+        barSpace: 0.2,
+        barsSpaceLeft: 0.05,
+        barsSpaceRight: 0.05,
+        borderColor: '#000',
+        borderWidth: '1px',
+        fillAngle: 270,
+        jsRule: 'rule_plot()',
+        shadow: true,
+        shadowColor: '#111',
+        shadowDistance: 1,
+      },
+      plotarea: {
+        margin: '100px 0px 40px 0px',
+        backgroundColor: '#000000',
+      },
+      scaleX: {
+        values: [
+          '#1 WORST',
+          '#2 WORST',
+          '#3 WORST',
+          '#4 WORST',
+          '#5 WORST'
+        ],
+        item: {
+          color: 'red',
+        },
+        lineWidth: '0px',
+        offsetStart: '50px',
+        offsetEnd: '20px',
+        tick: {
+          visible: false,
+        },
+      },
+      scaleY: {
+        values: '0:110:10',
+        
+        guide: {
+          items: [
+            {
+              backgroundColor: '#659c9e',
+            },
+            {
+              backgroundColor: '#a4dbca',
+            },
+          ],
+          lineColor: '#444444',
+          lineStyle: 'solid',
+        },
+        item: {
+          color: '#ffffff',
+          fontWeight: 900,
+          jsRule: 'rule_scaleX_item()',
+          offsetX: '40px',
+        },
+        refLine: {
+          visible: false,
+        },
+      },
+      series: [
+        {
+          text: 'Average Connection Speed for.',
+          values: [results[1][4]["speed"], results[1][3]["speed"], results[1][2]["speed"], results[1][1]["speed"], results[1][0]["speed"]],
+        },
+      ],
+      
+    },
+    {
+      type: 'null',
+      backgroundColor: '#e9f0ef',
+      borderColor: '#384653',
+      borderRadius: '4px',
+      borderWidth: '1px',
+      height: '40%',
+      width: '94%',
+      x: '3%',
+      y: '60%',
+      title: {
+        text: `BEST: 
+               #1. ${results[0][4]["url"].substring(8, results[0][4]["url"].length)}
+               #2. ${results[0][3]["url"].substring(8, results[0][3]["url"].length)}
+               #3. ${results[0][2]["url"].substring(8, results[0][2]["url"].length)}
+               #4. ${results[0][1]["url"].substring(8, results[0][1]["url"].length)}
+               #5. ${results[0][0]["url"].substring(8, results[0][0]["url"].length)}
+               WORST:
+               #1. ${results[1][0]["url"].substring(8, results[1][0]["url"].length)}
+               #2. ${results[1][1]["url"].substring(8, results[1][1]["url"].length)}
+               #3. ${results[1][2]["url"].substring(8, results[1][2]["url"].length)}
+               #4. ${results[1][3]["url"].substring(8, results[1][3]["url"].length)}
+               #5. ${results[1][4]["url"].substring(8, results[1][4]["url"].length)}`,
+        backgroundColor: 'none',
+        fontColor: '#384653',
+        fontSize: '12px',
+        height: '200px',
+      },
+    }
+      ]};
+
+    // RENDER CHARTS
+    // -----------------------------
+    zingchart.render({
+      id: 'pageLoadChart',
+      data: pageLoadConfig,
+      output: 'svg',
+      height: '100%',
+      width:'100%'
+    });
+  })};
+
+  getPageLoadData(); 
+
+  let getErrorData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/errors')
+    .then(res => res.json())
+    .then(results => {
+            var myConfig = {
+    "graphset":[
+        {
+            "type":"grid",
+            "plotarea":{
+                "margin":"35 20 20 20"
+            },
+            "options":{
+                "col-labels":["URL","Count"],
+                "col-widths":["75%","25%"],
+                "style":{
+                    ".th":{
+                        "y":"0px",
+                        "background-color":"#7ca82b",
+                        "font-color":"#fff",
+                        "font-size":"18",
+                        "font-weight":"none",
+                        "height":"40px"
+                    }
+                }
+            },
+            "series":[
+                {
+                    "values":[results[0][0]["url"],results[0][0]["count"]]
+                },
+                {
+                    "values":[results[0][1]["url"],results[0][1]["count"]]
+                },
+                {
+                    "values":[results[0][2]["url"],results[0][2]["count"]]
+                },
+                {
+                    "values":[results[0][3]["url"],results[0][3]["count"]]
+                },
+                {
+                    "values":[results[0][4]["url"],results[0][4]["count"]]
+                },
+                {
+                    "values":[results[0][5]["url"],results[0][5]["count"]]
+                },
+                {
+                    "values":[results[0][6]["url"],results[0][6]["count"]]
+                },
+                {
+                    "values":[results[0][6]["url"],results[0][6]["count"]]
+                }
+            ]
+        }
+    ]
+};
+
+
+zingchart.render({ 
+	id : 'myChart', 
+	data : myConfig, 
+	height: "100%", 
+	width: "100%"
+});
+    })};
+    getErrorData(); 
+zinchart.render({
+    id : 'loadErrorChart',
+    data: loadErrorConfig,
+    height: "100%", 
+    width: "100%"
+});
+
+        </script>
+    </body>
+</html>

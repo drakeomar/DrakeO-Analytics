@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="UTF-8" />
+  <script>
+	  function testtest(data = "not specified"){
+	window.onerror = function(error, url, line) {
+	  console.log({acc:'error', data:'ERR:'+error+' URL:'+url+' L:'+line});
+	};
+	console.log(`ERROR IN LOADING DETECTED: ${data}`); 
+	}	
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="/text/css" href="/css/bootstrap-4.3.1-dist/css/bootstrap.min.css" onerror="testtest('bootstrap css')">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js" onerror="testtest('jquery')"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" onerror="testtest('popper')"></script>
+  <script src="/css/bootstrap-4.3.1-dist/js/bootstrap.min.js" onerror="testtest('bootstrap css')"></script>
+  <link rel="stylesheet" type="text/css" href="/css/myStyle.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+	<style>
+  
+  /* Defaults */
+  :root {
+  --purple: #4C3686;
+  --pink: #E759BE;
+  --fontColor: #A7ACB5;
+  --gray: #F5F6FA;
+  --white: #FFFFFF;
+  --boxShadow: #D9D9D9;
+  --lightBlue: #00C9F3;
+  }
+  
+  .zc-body {
+	margin: 0;
+	background-color: var(--gray);
+	color: var(--purple);
+	font-family: Roboto;
+	font-weight: normal;
+	text-shadow: none;
+  }
+  
+  /* Defaults */
+  .grid { margin:0 1.5rem; padding-bottom:1rem; max-width:1600px; }
+  .grid > * + * { margin-top:2rem; }
+  .main-content .flex { display:flex; }
+  .main-content .flex-center { display:flex; align-items:center; }
+  .main-content .flex-around { justify-content:space-around; }
+  .main-content .flex-between { justify-content:space-between; }
+  .main-content .flex-column { flex-direction:column; }
+  .main-content h1, 
+  .main-content h2 { margin:0; font-weight:normal; text-shadow:none; }
+  
+  /* Nav */
+  .real-estate-nav { height:50px; background-color:var(--white); border-bottom:1px solid var(--gray); }
+  .real-estate-nav svg { padding:0 2rem; }
+  .real-estate-nav i { padding:0 2rem; }
+  
+  /* Header */
+  .real-estate-header { margin:0 1.5rem; padding:1rem 0; }
+  
+  /* Home Info */
+  .real-estate-home-info {
+	border-radius: 4px;
+	background-color: var(--white);
+	box-shadow:0 5px 10px 1px var(--boxShadow);
+  }
+  .real-estate-home-img {
+	height: 200px;
+	background: url('http://bit.ly/2hsTm4V');
+	background-size: cover;
+  }
+  
+  /* Charts */
+  .real-estate-charts {
+	padding: 1rem;
+	min-height: 700px;
+	background-color: var(--white);
+	border-radius: 4px;
+	box-sizing: border-box;
+	box-shadow:0 5px 10px 1px var(--boxShadow);
+  }
+  .chart1 {
+	height: 500px;
+	width: 100%;
+	border-radius: 4px;
+  }
+  .chart2 {
+	height: 200px;
+	width: 100%;
+	border-radius: 4px;
+  }
+  
+  .zc-ref { display:none; }
+  
+  /* TABLET: PORTRAIT+ */
+  @media screen and (min-width: 767px) {
+	/* Defaults */
+	.grid { margin:0 auto; display:grid; grid-template-columns:repeat(3, 30%); grid-column-gap:4rem; }
+	.real-estate .grid > * { margin:0; }
+  
+	/* Header */
+	.real-estate-header { margin-right:auto; margin-left:auto; padding:1.5rem 0; max-width:1600px; }
+  }
+	</style>
+  </head>
+  
+  <body class="zc-body">
+  
+	<div class="main-content">
+  
+	  <nav class="real-estate-nav flex-center flex-between">
+		<div>
+		  <svg width="41px" height="35px" viewBox="94 100 41 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+			<desc>Created with Sketch.</desc>
+			<defs></defs>
+			<g id="Group" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(95.000000, 100.000000)" fill-opacity="0.75">
+			  <path d="M5,1.95667584 C5,-0.252104453 6.26435773,-0.778316926 7.82983713,0.78716247 L39.2122838,32.1696092 C40.7751597,33.7324851 40.2555025,34.9994463 38.0427705,34.9994463 L8.9993505,34.9994463 C6.79057021,34.9994463 5,33.2128278 5,31.0000958 L5,1.95667584 Z" id="Triangle-2" fill="#4C3686"></path>
+			  <path d="M2.06425208,34.9999629 C-0.137374169,34.9999629 -0.661882288,33.7397004 0.898526661,32.1792914 L32.1793285,0.898489609 C33.7371423,-0.659324268 35,-0.141350141 35,2.06421503 L35,31.013566 C35,33.2151922 33.2191682,34.9999629 31.013603,34.9999629 L2.06425208,34.9999629 Z" id="Triangle-2-Copy" fill="#00C9F3"></path>
+			</g>
+		  </svg>
+		  <button id="logout_button">
+			  LOGOUT
+		  </button>
+		</div>
+	  </nav>
+  
+	  <header class="real-estate-header">
+		<h2>180 Jasper Lane</h2>
+	  </header>
+  
+	  <div class="grid">
+  
+		<div class="real-estate-home-info">
+		  <div class="real-estate-home-img"></div>
+		  <div class="real-estate-home-content">
+  
+			<address>
+			  180 Jasper Lane #102<br>
+			  Pittsburgh, PA 82110
+			</address>
+  
+			<h2 class="real-estate-price">$1450 per month</h2>
+			<span class="real-estate-caps">2 Year Lease Required</span>
+  
+			<span class="real-estate-tag">LEASED</span>
+  
+			<ul class="real-estate-stats">
+			<li>
+			  <small>Square Feet</small>
+			  <span>1387</span>
+			</li>
+			<li>
+			  <small>Bedrooms</small>
+			  <span>2</span>
+			</li>
+			<li>
+			  <small>Bathrooms</small>
+			  <span>1.5</span>
+			</li>
+			<li>
+			  <small>Pets</small>
+			  <span>No</span>
+			</li>
+			<li>
+			  <small>Parking</small>
+			  <span>Private Carport</span>
+			</li>
+  
+		  </div>
+		</div>
+  
+		<!-- Charts -->
+		<div class="real-estate-charts boxShadow">
+  
+		  <div id="myChart" class="chart1">
+			<a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+		  </div>
+  
+		  <div id="myChart2" class="chart2">
+			<a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+		  </div>
+  
+		  
+  
+		</div>
+		
+		<div id="myChart4" class="chart2">
+			<a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+		  </div>
+		  <div id="myChart1" class="chart1">
+			
+		  </div>
+	  </div>
+  
+	  <div class="grid">
+		<div class="real-estate-charts boxShadow">
+		  <div id="myChart3" class="chart2">
+			<a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+		  </div>
+		  
+		</div>
+		<div id="myChart4" class="chart2">
+			<a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+		  </div>
+	  </div>
+	</div>
+  
+	
+	<script>
+		
+	document.getElementById('logout_button').onclick = function() {
+		console.log('logging out'); 
+		location.href = 'https://reporting.drakeomar.com/logout'; 
+	};
+
+  let getData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/pi')
+  .then(res => res.json())
+  .then(results => {
+  	// Use setdata to instantiate the chart
+  	a = results; 
+    localStorage.setItem("googleCount", results[0]);
+    console.log("TESTING LOCAL"); 
+    console.log(a); 
+
+
+	zingchart.bind('myChart2', 'plot_click', function(e) {
+          console.log(e); 
+		  
+        });
+  // DEFINE CHART LOCATIONS (IDS)
+  // -----------------------------
+  // Main chart render location
+  let chart1Id = 'myChart';
+  let chart2Id = 'myChart2';
+  let chart3Id = 'myChart3';
+  let chart4Id = 'myChart4';
+  
+  // CHART DATA
+  // -----------------------------
+  
+  let views = [0, 1, 1, 1, 1, 1, 2, 3, 4, 5, 3, 6, 10, 9, 8, 7, 6, 5, 4, 2, 3, 4, 5, 6, 5, 4, 3, 4, 3, 2];
+  let leads = [0, 1, 2, 2, 3, 4, 5, 2, 2, 3, 2, 2, 3, 4, 5, 6, 7, 6, 5, 2, 4, 6, 7, 6, 4, 3, 2, 2, 1, 0];
+  let showings = [0, 3, 5, 0, 0, 0, 3, 0, 6, 4, 2, 0, 0, 0, 0, 1, 2, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  
+  
+  // CHART CONFIG
+  // -----------------------------
+  
+  // Chart 1
+  let chartConfig = {
+	type: 'area',
+	title: {
+	  text: 'Market Performance',
+	  fontWeight: 'normal',
+	  fontColor: 'var(--purple)',
+	  align: 'left',
+	  marginLeft: '2rem'
+	},
+	tooltip: {
+	  visible: false
+	},
+	globals: {
+	  fontColor: 'var(--fontColor)',
+	  fontFamily: 'Roboto'
+	},
+	legend: {
+	  borderWidth: 0,
+	  layout: 'horizontal',
+	  marker: {
+		type: 'pie'
+	  }
+	},
+	labels: [
+	  {
+		text: 'LEASED',
+		hook: 'node:plot=0;index=18',
+		backgroundColor: 'var(--lightBlue)',
+		fontColor: 'var(--white)',
+		borderRadius: '24px',
+		padding: '2px 8px',
+		offsetY: '-12px'
+	  }
+	],
+	scaleX: {
+	  lineWidth: 0,
+	  minValue: 1509537600000,
+	  step: 'day',
+	  label: {
+		text: 'Days',
+	  },
+	  tick: {
+		visible: false
+	  },
+	  transform: {
+		type: 'date',
+		all: '%d'
+	  }
+	},
+	scaleY: {
+	  values: '0:10:2',
+	  lineWidth: 0,
+	  tick: {
+		visible: false
+	  },
+	  guide: {
+		lineStyle: 'solid',
+		lineColor: 'var(--boxShadow)'
+	  }
+	},
+	plot: {
+	  aspect: 'spline'
+	},
+	series: [
+	  {
+		values: leads,
+		backgroundColor: 'var(--pink)',
+		alphaArea: 1.0,
+		lineColor: 'var(--pink)',
+		text: 'Leads',
+		marker: {
+		  visible: false
+		}
+	  },
+	  {
+		values: views,
+		backgroundColor: 'var(--purple)',
+		alphaArea: 1.0,
+		lineColor: 'var(--purple)',
+		text: 'Views',
+		marker: {
+		  visible: false
+		}
+	  }
+	]
+  };
+  
+  // Chart 2
+  let chartConfig2 = {
+	type: 'bar',
+	title: {
+	  text: 'SHOWINGS BOOKED',
+	  align: 'left',
+	  fontColor: 'var(--purple)',
+	  fontWeight: 'normal',
+	  fontSize: '16px',
+	  marginLeft: '2rem'
+	},
+	tooltip: {
+	  visible: false
+	},
+	globals: {
+	  fontColor: 'var(--fontColor)',
+	  fontFamily: 'Roboto'
+	},
+	plot: {
+	  borderRadius: '8px',
+	  barWidth: 5
+	},
+	labels: [
+	  {
+		text: 'LEASED',
+		hook: 'node:plot=0;index=18',
+		backgroundColor: 'var(--lightBlue)',
+		fontColor: 'var(--white)',
+		borderRadius: '24px',
+		padding: '2px 8px',
+		offsetY: '-12px'
+	  }
+	],
+	scaleX: {
+	  lineWidth: 0,
+	  minValue: 1509537600000,
+	  step: 'day',
+	  label: {
+		text: 'Days',
+	  },
+	  tick: {
+		visible: false
+	  },
+	  transform: {
+		type: 'date',
+		all: '%d'
+	  }
+	},
+	scaleY: {
+	  lineWidth: 0,
+	  guide: {
+		lineStyle: 'solid',
+		lineColor: 'var(--boxShadow)'
+	  },
+	  tick: {
+		visible: false
+	  }
+	},
+	series: [
+	  {
+		values: showings,
+		backgroundColor: 'var(--pink)',
+		alpha: 1.0
+	  }
+	]
+  };
+  
+  var myConfig = {
+      "type": "pie",
+      "title": {
+        "text": "'aperture' attribute"
+      },
+      "scale-r": {
+        "aperture": 300
+      },
+      "plot": {
+        "value-box": {
+          "visible": false
+        }
+      },
+      "series": [{
+          "values": [59]
+        },
+        {
+          "values": [55]
+        },
+        {
+          "values": [30]
+        },
+        {
+          "values": [28]
+        },
+        {
+          "values": [15]
+        }
+      ]
+    };
+ 
+    zingchart.render({
+      id: 'myChart1',
+      data: myConfig,
+      height: 400,
+      width: "100%"
+    });
+    
+	 
+  
+  
+  // RENDER CHARTS
+  // -----------------------------
+  
+  // Chart 1
+  zingchart.render({
+	id: chart1Id,
+	data: chartConfig,
+	height: '100%',
+	width: '100%'
+  });
+  
+  // Chart 2
+  zingchart.render({
+	id: chart2Id,
+	data: chartConfig2,
+	height: '100%',
+	width: '100%'
+  });
+  
+  zingchart.render({
+	id: chart3Id,
+	data: chartConfig2,
+	height: '100%',
+	width: '100%'
+  });
+  
+  zingchart.render({
+	id: chart4Id,
+	data: chartConfig2,
+	height: '100%',
+	width: '100%'
+  });
+
+
+  zingchart.render({
+        id: 'myChart1',
+        data: chartConfig1,
+        height: '100%',
+        width: '100%',
+    });
+  });};
+
+
+  getData(); 
+	</script>
+  </body>
+  </html>

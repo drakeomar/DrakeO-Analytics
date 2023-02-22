@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="UTF-8" />
+
+  <script>
+      window.onerror = function(error, url, line) {
+        console.log({acc:'error', data:'ERR:'+error+' URL:'+url+' L:'+line});
+      };
+  </script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="/css/myStyle.css">
+<link href='//www.zingchart.com/css/zcDocs.css' rel='stylesheet' type='text/css'>
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+  <style>
+    :root {
+      --darkBlue: #1C232B;
+      --lightBlue: #35BCB8;
+      --white: #FFFFFF;
+      --gray: #3C454E;
+      --lightgray: #cbced1;
+      --brightGreen: #6CC4AB;
+      --neutralGreen: #4b9b82;
+      --darkGreen: #003849;
+      --blackBlue: #3C454E;
+      --seafoam: #3C454E;
+      --gray: #3C454E;
+      --gray: #3C454E;
+      --gray: #3C454E;
+      --gray: #3C454E;
+    }
+
+    .zc-body {
+      margin: 0;
+      background-color: var(--darkBlue);
+      color: var(--white);
+      font-family: Source Sans Pro;
+      font-weight: normal;
+      text-shadow: none;
+      line-height: 1.5;
+    }
+
+    /* Defaults */
+
+    .amzn h1,
+    .amzn h2,
+    .amzn h3 {
+      color: var(--white);
+      font-weight: normal;
+      text-shadow: none;
+    }
+
+    /* Nav */
+
+    .amzn-nav {
+      display: flex;
+      height: 100px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .amzn-nav div {
+      padding: 0 40px;
+    }
+
+    .amzn-nav svg {
+      fill: var(--white);
+    }
+
+    /* Content */
+
+    .amzn-content #line-chart {
+      height: 500px;
+      padding: 0 40px;
+    }
+
+    /* Chart */
+
+    .chart-dimensions {
+      width: 100%;
+      min-height: 500px;
+    }
+
+    /* Insights */
+
+    .amzn-insights {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      height: 600px;
+      padding: 16px 40px;
+    }
+
+    .amzn-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 48%;
+      min-height: 200px;
+      padding: 0 1rem;
+      border: 1px solid var(--gray);
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .dao-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      min-height: 200px;
+      padding: 0 1rem;
+      border: 1px solid var(--gray);
+      border-radius: 4px;
+      box-sizing: border-box;
+
+    }
+
+    .amzn-box .amzn-chart {
+      min-height: 120px;
+    }
+
+    .pi-chart {
+        margin: 20px auto; 
+    }
+
+    .amzn-box span {
+      color: var(--lightBlue);
+      font-size: 36px;
+      margin: 24px;
+    }
+
+    @media screen and (max-width: 500px) {
+      .amzn-insights {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        min-height: 700px;
+      }
+    }
+
+    .zc-ref {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="zc-body">
+
+  <div class="amzn">
+
+    <nav class="amzn-nav">
+
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 1100 1000"><path d="M2 776c3.333-5.333 8.666-5.667 16-1 166.666 96.667 348 145 544 145 130.666 0 259.666-24.333 387-73 3.333-1.333 8.166-3.333 14.5-6 6.333-2.667 10.833-4.667 13.5-6 10-4 17.833-2 23.5 6 5.666 8 3.833 15.333-5.5 22-12 8.667-27.334 18.667-46 30-57.334 34-121.334 60.333-192 79-70.667 18.667-139.667 28-207 28-104 0-202.334-18.167-295-54.5C162.333 909.167 79.333 858 6 792c-4-3.333-6-6.667-6-10 0-2 .666-4 2-6zm301-285c0-46 11.333-85.333 34-118 22.666-32.667 53.666-57.333 93-74 36-15.333 80.333-26.333 133-33 18-2 47.333-4.667 88-8v-17c0-42.667-4.667-71.333-14-86-14-20-36-30-66-30h-8c-22 2-41 9-57 21s-26.334 28.667-31 50c-2.667 13.333-9.334 21-20 23l-115-14c-11.334-2.667-17-8.667-17-18 0-2 .333-4.333 1-7 11.333-59.333 39.166-103.333 83.5-132C451.833 19.333 503.666 3.333 563 0h25c76 0 135.333 19.667 178 59a190.52 190.52 0 0 1 18.5 21.5c5.666 7.667 10.166 14.5 13.5 20.5 3.333 6 6.333 14.667 9 26 2.666 11.333 4.666 19.167 6 23.5 1.333 4.333 2.333 13.667 3 28 .666 14.333 1 22.833 1 25.5v242c0 17.333 2.5 33.167 7.5 47.5s9.833 24.667 14.5 31c4.666 6.333 12.333 16.5 23 30.5 4 6 6 11.333 6 16 0 5.333-2.667 10-8 14-55.334 48-85.334 74-90 78-8 6-17.667 6.667-29 2-9.334-8-17.5-15.667-24.5-23s-12-12.667-15-16-7.834-9.833-14.5-19.5c-6.667-9.667-11.334-16.167-14-19.5-37.334 40.667-74 66-110 76-22.667 6.667-50.667 10-84 10-51.334 0-93.5-15.833-126.5-47.5S303 549 303 491zm172-20c0 26 6.5 46.833 19.5 62.5S525 557 547 557c2 0 4.833-.333 8.5-1 3.666-.667 6.166-1 7.5-1 28-7.333 49.666-25.333 65-54 7.333-12.667 12.833-26.5 16.5-41.5 3.666-15 5.666-27.167 6-36.5.333-9.333.5-24.667.5-46v-25c-38.667 0-68 2.667-88 8-58.667 16.667-88 53.667-88 111zm420 322c1.333-2.667 3.333-5.333 6-8 16.666-11.333 32.666-19 48-23 25.333-6.667 50-10.333 74-11 6.666-.667 13-.333 19 1 30 2.667 48 7.667 54 15 2.666 4 4 10 4 18v7c0 23.333-6.334 50.833-19 82.5-12.667 31.667-30.334 57.167-53 76.5-3.334 2.667-6.334 4-9 4-1.334 0-2.667-.333-4-1-4-2-5-5.667-3-11 24.666-58 37-98.333 37-121 0-7.333-1.334-12.667-4-16-6.667-8-25.334-12-56-12-11.334 0-24.667.667-40 2-16.667 2-32 4-46 6-4 0-6.667-.667-8-2-1.334-1.333-1.667-2.667-1-4 0-.667.333-1.667 1-3z"/></svg>
+      </div>
+
+      <div>
+        <h1>Amazon Sales</h1>
+        <p>Year 2021</p>
+      </div>
+
+    </nav>
+
+    <div class="amzn-content">
+
+      <div id="chartLine" class="chart-dimensions">
+        <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+      </div>
+
+      <div class="amzn-insights">
+
+        <div class="amzn-box">
+          <h3>Gender</h3>
+          <div id="chartPie" class="chart-dimensions">
+            <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+          </div>
+        </div>
+
+        <div class="amzn-box">
+          <h3>Total This Year</h3>
+          <span>$545k</span>
+        </div>
+
+        <div class="amzn-box">
+          <h3>Male</h3>
+          <div id="chartMaleLine" class="chart-dimensions">
+            <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+          </div>
+        </div>
+
+        <div class="amzn-box">
+          <h3>Female</h3>
+          <div id="chartFemaleLine" class="chart-dimensions">
+            <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+          </div>
+        </div>
+
+        <div class="dao-box pi-chart">
+            <div id="myChart1" class="chart-dimensions">
+                <a class="zc-ref" href="https://www.zingchart.com">Powered by ZingChart</a>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // DEFINE CHART LOCATIONS (IDS)
+
+  
+
+
+let getData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/pi')
+  .then(res => res.json())
+  .then(results => {
+  	// Use setdata to instantiate the chart
+  	a = results; 
+    localStorage.setItem("googleCount", results[0]);
+    console.log("TESTING LOCAL"); 
+    console.log(a); 
+
+        // -----------------------------
+    // Main chart render location
+    let lineId = 'chartLine';
+    let maleLineId = 'chartMaleLine';
+    let femaleLineId = 'chartFemaleLine';
+    let pieId = 'chartPie';
+
+    // CHART CONFIG
+    // -----------------------------
+
+
+    // Line
+    let lineConfig = {
+      type: 'area',
+      globals: {
+        fontColor: 'var(--white)',
+        fontFamily: 'Source Sans Pro',
+      },
+      backgroundColor: 'transparent',
+      legend: {
+        align: 'left',
+        backgroundColor: 'transparent',
+        borderWidth: '0px',
+        item: {
+          fontWeight: 'normal',
+          textShadow: 'none',
+        },
+        layout: '1',
+        marker: {
+          type: 'circle',
+          borderWidth: '0px',
+        },
+      },
+      plot: {
+        tooltip: {
+          visible: false,
+        },
+      },
+      scaleX: {
+        lineWidth: '0px',
+        labels: ['Jan<br>2021', 'Feb<br>2021', 'Mar<br>2021', 'Apr<br>2021'],
+        tick: {
+          visible: false,
+        },
+      },
+      scaleY: {
+        lineWidth: '0px',
+        guide: {
+          lineColor: 'var(--gray)',
+          lineStyle: 'solid',
+        },
+        tick: {
+          visible: false,
+        },
+      },
+      series: [{
+          text: 'Music',
+          values: [1, 2, 3, 4],
+          backgroundColor: 'var(--lightBlue)',
+          lineColor: 'var(--lightBlue)',
+          marker: {
+            backgroundColor: 'var(--lightBlue)',
+          },
+        },
+        {
+          text: 'Electronics',
+          values: [2, 4, 6, 8],
+          backgroundColor: 'var(--lightBlue)',
+          lineColor: 'var(--lightBlue)',
+          marker: {
+            backgroundColor: 'var(--lightBlue)',
+          },
+        },
+        {
+          text: 'Grocery',
+          values: [3, 6, 9, 12],
+          backgroundColor: 'var(--lightBlue)',
+          lineColor: 'var(--lightBlue)',
+          marker: {
+            backgroundColor: 'var(--lightBlue)',
+          },
+        },
+      ],
+    };
+
+    // Male Line
+    let maleLineConfig = {
+      type: 'hbar',
+      backgroundColor: 'transparent',
+      plotarea: {
+        margin: '0 0 16px 0',
+      },
+      scaleX: {
+        visible: false,
+      },
+      scaleY: {
+        visible: false,
+      },
+
+      series: [{
+        values: [1, 2, 3],
+        backgroundColor: 'var(--lightBlue)',
+      }, ],
+    };
+
+    // Female Line
+    let femaleLineConfig = {
+      type: 'hbar',
+      backgroundColor: 'transparent',
+      plotarea: {
+        margin: '0 0 16px 0',
+      },
+      scaleX: {
+        visible: false,
+      },
+      scaleY: {
+        visible: false,
+      },
+      series: [{
+        values: [1, 2, 3],
+        backgroundColor: 'var(--lightBlue)',
+      }, ],
+    };
+
+    // Pie
+    let pieConfig = {
+      type: 'ring',
+      backgroundColor: 'transparent',
+      plot: {
+        valueBox: {
+          visible: false,
+        },
+        borderWidth: 0,
+        slice: '75%',
+      },
+      plotarea: {
+        margin: '0 0 16px 0',
+      },
+      series: [{
+        values: [85],
+        backgroundColor: 'var(--lightBlue)',
+      }, ],
+    };
+
+    let chartConfig1 = {
+        type: 'pie',
+        backgroundColor: '#003849',
+        
+        subtitle: {
+            backgroundColor: '#1e2c30',
+            height: '35px',
+            y: '40px'
+        },
+        legend: {
+            
+            backgroundColor: '#1e2c30',
+            borderWidth: '0px',
+            item: {
+                fontColor: 'white'
+            },
+            layout: 'h',
+            marker: {
+                type: 'circle',
+                borderColor: 'white'
+            },
+            shadow: false,
+            toggleAction: 'remove',
+            x: '32.5%',
+            y: '40px'
+        },
+        plot: {
+            valueBox: [{
+                text: '%t: %v',
+                fontSize: '16px',
+                placement: 'out'
+            },
+                {
+                    text: '%npv%',
+                    fontColor: '#1A1B26',
+                    fontSize: '16px',
+                    placement: 'in'
+                }
+            ],
+            refAngle: 270
+        },
+        plotarea: {
+            margin: '90px 30px 25px 30px'
+        },
+        tooltip: {
+            borderColor: '#fff',
+            borderRadius: '3px',
+            borderWidth: '1px',
+            fontColor: '#1A1B26',
+            fontSize: '12px',
+            shadow: false
+        },
+        series: [{
+            text: "Google Chrome",
+            values: new Array(1).fill(a[0]),
+            backgroundColor: '#3bd1bd'
+        },
+            {
+                text: "Mozilla Firefox", 
+                values: new Array(1).fill(a[1]),
+                backgroundColor: '#FFA089'
+            },
+            {   
+                text:"Safari", 
+                values: new Array(1).fill(a[2]),
+                backgroundColor: '#2761cc'
+            },
+            {
+                text:"Other",
+                values: new Array(1).fill(a[3]),
+                backgroundColor: '#e2f5c1'
+            }
+        ]
+    };
+
+    // RENDER CHARTS
+    // -----------------------------
+
+    // Line
+    zingchart.render({
+      id: lineId,
+      data: lineConfig,
+      height: '100%',
+      width: '100%',
+    });
+
+    // Male Line
+    zingchart.render({
+      id: maleLineId,
+      data: maleLineConfig,
+      height: '100%',
+      width: '100%',
+    });
+
+    // Female Line
+    zingchart.render({
+      id: femaleLineId,
+      data: femaleLineConfig,
+      height: '100%',
+      width: '100%',
+    });
+
+    // Pie
+    zingchart.render({
+      id: pieId,
+      data: pieConfig,
+      height: '100%',
+      width: '100%',
+    });
+
+    
+    zingchart.render({
+        id: 'myChart1',
+        data: chartConfig1,
+        height: '100%',
+        width: '100%',
+    });
+
+  });};
+
+  getData();
+  </script>
+</body>
+
+</html>

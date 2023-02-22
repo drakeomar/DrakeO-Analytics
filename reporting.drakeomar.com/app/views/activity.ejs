@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/css/myStyle.css">
+        <link href='//www.zingchart.com/css/zcDocs.css' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+        <style>
+            .zc-body {
+              background: #003849;
+            }
+        
+            .chart--container {
+              height: 100%;
+              width: 100%;
+              min-height: 10px; 
+              background-color: #659c9e;
+            }
+        
+            .chart-wrapper {
+                height: 50%; 
+            }
+            .chart--container1 {
+              height: 100%;
+              width: 100%;
+              min-height: 250px;
+              background-color: #659c9e;
+            }
+
+            .chart--container2 {
+              height: 100%;
+              width: 100%;
+              min-height: 400px;
+              background-color: #659c9e;
+            }
+        
+            .bounceChart--container {
+                display: inline-block; 
+                width:100%; 
+                height: 100%; 
+                min-height: 400px; 
+            }
+
+            .defaultBox{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              width: 42%;
+              min-height: 200px;
+              padding: 0 1rem;
+              border-radius: 4px;
+              box-sizing: border-box;
+            }
+        
+            .boxWrapper {
+              display: flex;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              height: 600px;
+              padding: 16px 40px;
+            }
+        
+            .zc-ref {
+              display: none;
+            }
+            
+            .test {
+                padding: 2rem; 
+            }
+
+            
+        
+            /* Nav */
+        
+            .home-nav {
+              display: flex;
+              height: 5%;
+              justify-content: space-between;
+              align-items: center;
+            }
+        
+            .home-nav div {
+              padding: 0 40px;
+            }
+        
+            .home-nav svg {
+              fill: var(--white);
+            }
+        
+            .logout-button{
+                padding:1rem; 
+                color:white;
+            }
+            
+            .main-title{
+                color:white; 
+            }
+        
+            
+        </style>
+
+    </head>
+
+    <body class="zc-body">
+        <!-- NAV -->
+        <nav class="home-nav mt-3">
+          <a href="https://reporting.drakeomar.com/test">
+            <div>
+              <img src="https://drakeomar.com/img/logo-trans.png" style="height:2rem" alt="HOME">
+            </div>
+          </a>
+            
+            <div>
+                <h1 class="text-center main-title">Webmaster Traffic</h1>
+            </div>
+            <div>
+                <a href="https://reporting.drakeomar.com/logout">
+                    <h2 class="logout-button">LOGOUT</h2>
+                </a>
+            </div>
+    
+        </nav>
+        <!-- MAIN CONTENT VIEW -->
+        <div class="container-fluid h-50">
+
+            <h3 class="mt-3 main-title text-center">Bounce Rate</h1>
+    
+            <div class="row">
+                <div class="col-md-2 col-lg-2">
+                    <div class="row">
+                        <div class="col-12">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-lg-8">
+                    <div class="row test">
+                        <div class="col-3">
+                          
+                        </div>
+                        <div class="col-6">
+                            <div class="card module">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div id="bounceRateBarChart" class="bounceChart--container">
+                                    
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div id="bounceRateGaugeChart" class="bounceChart--container">
+                                    
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- WHITESPACE-->
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="row test">
+                        <div class="col-12">
+                            <!-- WHITESPACE-->
+                            <div class="card module">
+                                <div id="activityChart" class="chart--container2">
+                                    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- WHITESPACE-->
+                            
+                        </div>
+                    </div>
+                    <div class="row test">
+                        <div class="col-12">
+                            <div class="card module">
+                                <div id="idleChart" class="chart--container1">
+                                    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+                                    TEST
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            
+        </div>
+
+        <!-- ZINGCHART JS CONFIGURATIONS AND RENDERING -->
+        <script>
+
+let getBounceData = async() => { 
+
+await fetch('https://drakeomar.com/api/charts/bounce-rate')
+.then(res => res.json())
+.then(results => {
+    console.log(results); 
+            let chartConfig1 = {
+  type: 'bar',
+  title: {
+    text: 'Bounce Rate per Page'
+  },
+  scaleX: {
+    values: [results[0][1][0],results[0][1][0], results[0][2][0], results[0][3][0], results[0][4][0]]
+  },
+  plot: {
+    cursor: 'pointer',
+    selectedState: {
+      backgroundColor: '#1DE9B6',
+      borderColor: 'grey',
+      borderWidth: '4px'
+    },
+    selectionMode: 'plot'
+  },
+  series: [
+    {
+      values: [results[0][0][1], results[0][1][1], results[0][2][1], results[0][3][1], results[0][4][1]],
+      backgroundColor: '#009688'
+    }
+  ]
+};
+var chartConfig2 = {
+  "type":"gauge",
+  "scale-r":{
+    "aperture":200,
+    "values":"0:100:20",
+    "center":{
+      "size":5,
+ 	    "background-color":"#66CCFF #FFCCFF",
+ 	    "border-color":"none"
+    },
+    "ring":{
+      "size":25,
+      "rules":[
+            {
+              "rule":"%v >= 0 && %v <= 20",
+ 	            "background-color":"#72f79c"
+            },
+            {
+              "rule":"%v >= 20 && %v <= 40",
+ 	            "background-color":"#72f79c"
+            },
+            {
+              "rule":"%v >= 40 && %v <= 60",
+ 	            "background-color":"#f7ea72"
+            },
+            {
+              "rule":"%v >= 60 && %v <= 80",
+ 	            "background-color":"#ed9d74"
+            },
+            {
+              "rule":"%v >= 80 && %v <=100",
+              "background-color":"#ed7474"
+            }
+          ]
+        },
+    "guide":{
+      //"background-color":"#66CCFF #FFCCFF",
+      "alpha":0.2
+    },
+    "tick":{
+      "line-color":"#66CCFF",
+      "line-style":"solid", //solid, dashed, or dotted
+      "line-width":3,
+      "size":15,
+      "placement":"inner" //outer, inner, or cross
+    },
+    "minor-ticks":4,  //Specify the NUMBER of minor tick marks.
+    "minor-tick":{    //And then STYLE your minor tick markers.
+      "line-color":"#FFFFFF",
+      "line-style":"solid", //solid, dashed, or dotted
+      "line-width":2,
+      "size":10,
+      "placement":"inner" //outer, inner, or cross
+    }
+  },
+  "plot":{
+    "csize":"5%",
+    "size":"100%",
+    "background-color":"#000000",
+    "valueBox": {
+      text: `%v`, // default
+      fontSize: '35px',
+      placement: 'center',
+      rules: [
+        {
+          text: '%v<br>Bad',
+          rule: '%v >= 80',
+        },
+        {
+          text: '%v<br>Fair',
+          rule: '%v < 80 && %v > 60',
+        },
+        {
+          text: '%v<br>Okay',
+          rule: '%v < 60 && %v > 20',
+        },
+        {
+          text: '%v<br>Excellent',
+          rule: '%v < 40',
+        },
+      ],
+    },
+  },
+  "series":[
+    {"values":[results[1]]}
+  ]
+};
+
+zingchart.render({
+  id: 'bounceRateBarChart',
+  data: chartConfig1,
+  height: '100%',
+  width: '100%',
+});
+
+zingchart.render({
+  id: 'bounceRateGaugeChart',
+  data: chartConfig2,
+  height: '100%',
+  width: '100%',
+});
+})};
+
+getBounceData(); 
+
+
+let getActivityData = async() => { 
+
+await fetch('https://drakeomar.com/api/charts/bar')
+.then(res => res.json())
+.then(results => {
+    console.log(results); 
+let activityConfig = {
+    type: 'bar',
+    backgroundColor: '#1e2c30',
+    title: {
+        text: 'User Interactive Data - Clicks and Keystrokes Per Day',
+        align: 'center',
+        fontColor: '#70E6CC',
+        fontFamily: 'Lato',
+        fontSize: '16px',
+        padding: '15px',
+    },
+    
+    subtitle: {
+      text: 'Clicks and Keystrokes',
+      //align: 'center',
+      fontColor: '#1e2c30',
+      fontFamily: 'Lato',
+      fontSize: '12px',
+      padding: '20px'
+    },
+    legend: {
+        align: 'left',
+        padding: '15px',
+        borderWidth: '2px',
+        borderColor: '#70e6cc', 
+        item: {
+            fontColor: '#777',
+        },
+        layout: 'x2',
+        marker: {
+            borderRadius: '50px',
+        },
+    },
+    plot: {
+        tooltip: {
+            visible: false,
+        },
+        animation: {
+            effect: 'ANIMATION_EXPAND_BOTTOM',
+            method: 'ANIMATION_STRONG_EASE_OUT',
+            sequence: 'ANIMATION_BY_NODE',
+            speed: 275,
+        },
+        backgroundColor: '#1e2c30',
+        barSpace: '2px',
+        marker: {
+            size: 3.5,
+        },
+    },
+    
+    scaleX: {
+        minValue: results[0],
+        step: 86400000,
+        guide: {
+            lineColor: '#D7D8D9',
+            lineGapSize: '4px',
+            lineStyle: 'dotted',
+            rules: [
+                {
+                    rule: '%i == 0',
+                    visible: false,
+                },
+            ],
+            visible: true,
+        },
+        item: {
+            padding: '5px',
+            fontColor: '#70e6cc',
+            fontFamily: 'Montserrat',
+        },
+        lineWidth: '0px',
+        margin: '20px',
+        offsetY: '-20px',
+        padding: '20px',
+        tick: {
+            lineColor: '#70e6cc',
+        },
+        transform: {
+            type: 'date',
+            all: '%m/%d/%y',
+        },
+    },
+    scaleY: {
+        guide: {
+            lineColor: '#D7D8D9',
+            lineGapSize: '4px',
+            lineStyle: 'dotted',
+            rules: [
+                {
+                    rule: '%i == 0',
+                    visible: false,
+                },
+            ],
+            visible: true,
+        },
+        item: {
+            padding: '0 10 0 0',
+            fontColor: '#70e6cc',
+            fontFamily: 'Montserrat',
+        },
+        lineWidth: '0px',
+        
+        tick: {
+            lineColor: '#D1D3D4',
+        },
+    },
+    crosshairX: {
+        lineColor: '#b6b6b6',
+        lineStyle: 'dashed',
+        marker: {
+            size: '4px',
+            visible: true,
+        },
+        plotLabel: {
+            backgroundColor: 'white',
+            bold: true,
+            borderColor: '#e3e3e3',
+            borderRadius: '5px',
+            fontColor: '#2f2f2f',
+            fontFamily: 'Lato',
+            fontSize: '12px',
+            padding: '15px',
+            shadow: true,
+            shadowAlpha: 0.2,
+            shadowBlur: 5,
+            shadowColor: '#a1a1a1',
+            shadowDistance: 4,
+            textAlign: 'right',
+        },
+        scaleLabel: {
+            backgroundColor: '#FBFCFE',
+            bold: true,
+            callout: false,
+            fontColor: '#1E5D9E',
+            fontSize: '16px',
+            paddingTop: '2px',
+        },
+        trigger: 'move',
+    },
+    series: [
+        {
+            text: 'Keystrokes',
+            values: results[1],
+            backgroundColor: '#4e899c',
+        },
+        {
+            text: 'Clicks',
+            values: results[2],
+            backgroundColor: '#9a40b3',
+        },
+    ],
+};
+
+zingchart.render({
+    id: 'activityChart',
+    data: activityConfig,
+    height: '100%',
+    width: '100%',
+});})}
+
+getActivityData(); 
+zingchart.bind('bounceRateBarChart', 'node_click', function (e) {
+  zingchart.exec('bounceRateGaugeChart', 'setseriesvalues', {
+    plotindex: 0,
+    values: [e.value]
+  });
+});
+
+
+        </script>
+    </body>
+</html>

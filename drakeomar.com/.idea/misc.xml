@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="UnattendedHostPersistenceState">
+    <option name="openedFilesInfos">
+      <list>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="2507" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/app/model/check_css.model.js" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="1065" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/app/controller/check_img.controller.js" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="1036" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/app/controller/check_js.controller.js" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="10818" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/public_html/collector.js" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="848" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/app/controller/routes.js" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="744" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/public_html/index.html" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="0" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/public_html/c-cgiform.html" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="0" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/public_html/error404.html" />
+        </OpenedFileInfo>
+      </list>
+    </option>
+  </component>
+</project>

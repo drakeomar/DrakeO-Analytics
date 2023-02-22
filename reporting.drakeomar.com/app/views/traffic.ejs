@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/css/myStyle.css">
+        <link href='//www.zingchart.com/css/zcDocs.css' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+        <style>
+            .zc-body {
+              background: #003849;
+            }
+        
+            .chart--container {
+              height: 100%;
+              width: 100%;
+              min-height: 500px;
+              background-color: #b2d4cf47;
+            }
+        
+            .chart-wrapper {
+                height: 50%; 
+            }
+            .chart--container1 {
+              height: 100%;
+              width: 100%;
+              min-height: 250px;
+              background-color:#b2d4cf47;
+            }
+            
+            .chart--container2{
+              height: 100%;
+              width: 100%;
+              min-height: 400px;
+              background-color:#b2d4cf47;
+            }
+            .defaultBox{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              width: 42%;
+              min-height: 200px;
+              padding: 0 1rem;
+              border-radius: 4px;
+              box-sizing: border-box;
+            }
+        
+            .boxWrapper {
+              display: flex;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              height: 600px;
+              padding: 16px 40px;
+            }
+        
+            .zc-ref {
+              display: none;
+            }
+        
+            .module {
+              background-color: #b2d4cf47;
+            }
+            /* Nav */
+        
+            .home-nav {
+              display: flex;
+              height: 5%;
+              justify-content: space-between;
+              align-items: center;
+            }
+        
+            .home-nav div {
+              padding: 0 40px;
+            }
+        
+            .home-nav svg {
+              fill: var(--white);
+            }
+        
+            .logout-button{
+                padding:1rem; 
+                color:white;
+            }
+            
+            .main-title{
+                color:white; 
+            }
+        
+            
+        </style>
+
+    </head>
+
+    <body class="zc-body">
+        <!-- NAV -->
+        <nav class="home-nav mt-3">
+          <a href="https://reporting.drakeomar.com/test">
+            <div>
+              <img src="https://drakeomar.com/img/logo-trans.png" style="height:2rem" alt="HOME">
+            </div>
+          </a>
+            
+            <div>
+                <h1 class="text-center main-title">Webmaster Traffic</h1>
+            </div>
+            <div>
+                <a href="https://reporting.drakeomar.com/logout">
+                    <h2 class="logout-button">LOGOUT</h2>
+                </a>
+            </div>
+    
+        </nav>
+
+    
+
+        <!-- MAIN CONTENT VIEW -->
+        <div class="container-fluid h-100">
+
+            
+    
+            
+            <div class="row h-100">
+                <div class="col-md-1 col-lg-1">
+                    <div class="row h-100">
+                        <div class="col-12">
+                        
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-10 col-lg-10">
+                    <div class="row h-100">
+                        <div class="col-12 pb-2">
+                                <div class="card module bg-success h-100" style="height:100%">
+                                    
+                                    <div id="pageVisitsChart" class="chart--container2">
+
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-md-9 col-lg-9">
+                            <div class="row h-100">
+                                
+                                <div class="col-md-12 pb-2">
+                                    <div class="card module h-100">
+                                        <div id="dimensionsChart" class="chart--container1">
+    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <div class="card h-100">
+                                        <div id="mapChart" class="chart--container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3">
+                            <div class="row h-100">
+                              <!-- 
+                                <div class="col-md-12 pb-2 m3">
+                                    <div class="card h-100">
+                                        <div id="scatterChart" class="chart--container1">
+    
+                                        </div>
+                                    </div>
+                                </div>
+                              -->
+                                <div class="col-md-12 p2 m3">
+                                    <div class="card module h-100">
+                                        <div id="userAgentChart" class="chart--container">
+                                            <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1">
+                    <div class="row h-100">
+                        <div class="col-12">
+                        
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    
+
+        <!-- ZINGCHART JS CONFIGURATIONS AND RENDERING -->
+        <script>
+           let getPageTrafficData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/page-traffic')
+  .then(res => res.json())
+  .then(results => {
+
+    let diff = results[4]["thisWeek"] - results[4]["lastWeek"];
+    let diffStr = diff.toString();  
+
+           let pageTrafficConfig = {
+  graphset: [
+    {
+      type: 'mixed',
+      backgroundColor: '#659c9e',
+      height: '60%',
+      x: '0px',
+      y: '0px',
+      plot: {
+        tooltip: {
+          shadow: false,
+        },
+      },
+      plotarea: {
+        margin: '5px 30px 10px 30px',
+      },
+      scaleX: {
+        values: '1:7:1',
+        guide: {
+          visible: false,
+        },
+        item: {
+          visible: false,
+        },
+        itemsOverlap: true,
+        lineWidth: '0px',
+        tick: {
+          visible: false,
+        },
+      },
+      scaleX2: {
+        values: '1:7:1',
+        guide: {
+          visible: false,
+        },
+        item: {
+          visible: false,
+        },
+        lineWidth: '0px',
+        tick: {
+          visible: false,
+        },
+      },
+      scaleY: {
+        values: '0:100:10',
+        guide: {
+          visible: false,
+        },
+        item: {
+          visible: false,
+        },
+        lineWidth: '0px',
+        markers: [
+          {
+            type: 'line',
+            alpha: 0.6,
+            lineColor: '#777',
+            lineStyle: 'dashed',
+            lineWidth: '1px',
+            range: [50],
+          },
+        ],
+        tick: {
+          visible: false,
+        },
+      },
+      scaleY2: {
+        guide: {
+          visible: false,
+        },
+        item: {
+          visible: true,
+        },
+        lineWidth: '0px',
+        tick: {
+          visible: false,
+        },
+      },
+      labels: [
+        {
+          text: 'AAPL',
+          fontColor: '#fff',
+          fontSize: '22px',
+          x: '20px',
+          y: '14px',
+        },
+        {
+          text: '527.68',
+          fontColor: '#fff',
+          fontSize: '22px',
+          x: '625px',
+          y: '14px',
+        },
+        {
+          text: 'Today 3:25',
+          fontColor: '#D0E0B8',
+          fontFamily: 'arial narrow',
+          fontSize: '14px',
+          x: '20px',
+          y: '40px',
+        },
+        {
+          text: 'PM',
+          fontColor: '#D0E0B8',
+          fontFamily: 'arial narrow',
+          fontSize: '10px',
+          x: '80px',
+          y: '44px',
+        },
+        {
+          text: '+1.05 (1.69 %)',
+          fontColor: '#D0E0B8',
+          fontFamily: 'arial narrow',
+          fontSize: '14px',
+          x: '625px',
+          y: '40px',
+        },
+      ],
+      series: [
+        {
+          type: 'bar',
+          values: [
+            results[1]["day1"], results[1]["day2"], results[1]["day3"], results[1]["day4"], results[1]["day5"], results[1]["day6"], results[1]["day7"]
+          ],
+          animation: {
+            effect: 'ANIMATION_EXPAND_BOTTOM',
+          },
+          backgroundColor: '#9DBA73',
+          barWidth: '10px',
+          borderRadiusTopRight: '3px',
+          borderRadiusTopLeft: '3px',
+          hoverState: {
+            visible: false,
+          },
+          scales: 'scale-x, scale-y',
+        },
+        {
+          type: 'line',
+          values: [
+            results[0][0]["day1"], 
+            results[0][0]["day2"],
+            results[0][0]["day3"],
+            results[0][0]["day4"],
+            results[0][0]["day5"], 
+            results[0][0]["day6"], 
+            results[0][0]["day7"],
+          ],
+          animation: {
+            effect: 'ANIMATION_SLIDE_LEFT',
+          },
+          lineColor: '#F5F8ED',
+          marker: {
+            visible: false,
+          },
+          scales: 'scale-x, scale-y-2',
+        },
+        {
+          type: 'line',
+          values: [
+            results[0][1]["day1"], 
+            results[0][1]["day2"],
+            results[0][1]["day3"],
+            results[0][1]["day4"],
+            results[0][1]["day5"], 
+            results[0][1]["day6"], 
+            results[0][1]["day7"],
+          ],
+          animation: {
+            effect: 'ANIMATION_SLIDE_LEFT',
+          },
+          lineColor: '#F5F8ED',
+          marker: {
+            visible: false,
+          },
+          scales: 'scale-x-2, scale-y-2',
+        },
+        {
+          type: 'line',
+          values: [
+            results[0][2]["day1"], 
+            results[0][2]["day2"],
+            results[0][2]["day3"],
+            results[0][2]["day4"],
+            results[0][2]["day5"], 
+            results[0][2]["day6"], 
+            results[0][2]["day7"],
+          ],
+          animation: {
+            effect: 'ANIMATION_SLIDE_LEFT',
+          },
+          lineColor: '#F5F8ED',
+          marker: {
+            visible: false,
+          },
+          scales: 'scale-x-2, scale-y-2',
+        },
+        {
+          type: 'line',
+          values: [
+            results[0][3]["day1"], 
+            results[0][3]["day2"],
+            results[0][3]["day3"],
+            results[0][3]["day4"],
+            results[0][3]["day5"], 
+            results[0][3]["day6"], 
+            results[0][3]["day7"],
+          ],
+          animation: {
+            effect: 'ANIMATION_SLIDE_LEFT',
+          },
+          lineColor: '#F5F8ED',
+          marker: {
+            visible: false,
+          },
+          scales: 'scale-x-2, scale-y-2',
+        },
+        {
+          type: 'line',
+          values: [
+            
+            3, 0, 5, 7, 3, 4, 12
+          ],
+          animation: {
+            effect: 'ANIMATION_SLIDE_LEFT',
+          },
+          lineColor: '#F5F8ED',
+          marker: {
+            visible: false,
+          },
+          scales: 'scale-x-2, scale-y-2',
+        },
+      ],
+    },
+    {
+      type: 'hbar',
+      backgroundColor: '#fff',
+      borderColor: '#f2f2f2',
+      borderWidth: '2px',
+      height: '40%',
+      x: '0px',
+      y: '60%',
+      plot: {
+        animation: {
+          effect: 'ANIMATION_SLIDE_BOTTOM',
+        },
+        barsOverlap: '100%',
+        barSpace: '5px',
+        barWidth: '20px',
+      },
+      plotarea: {
+        margin: '25px 25px 50px 60%',
+      },
+      scaleX: {
+        values: ['Last Week', 'This Week'],
+        guide: {
+          visible: false,
+        },
+        item: {
+          fontColor: '#ADADAD',
+          fontSize: '12px',
+        },
+        lineWidth: '0px',
+        tick: {
+          visible: false,
+        },
+      },
+      scaleY: {
+        guide: {
+          visible: false,
+        },
+        item: {
+          visible: false,
+        },
+        lineWidth: '0px',
+        tick: {
+          visible: false,
+        },
+      },
+      labels: [
+        {
+          text: diffStr,
+          fontColor: '#A7C47B',
+          fontSize: '38px',
+          x: '40%',
+          y: '30%',
+        },
+        {
+          text: 'Weekly Change',
+          fontColor: '#ACACAC',
+          fontSize: '16px',
+          x: '42%',
+          y: '50%',
+        },
+        {
+          text: `PAGE 1: ${(results[2][0][0] == 'N/A') ? console.log("NA") : results[2][0][0].substring(8, results[2][0][0].length)}`,
+          fontColor: '#A7C47B',
+          fontSize: '20px',
+          x: '10%',
+          y: '20%',
+        },
+        {
+          text: `PAGE 2: ${results[2][1][0].substring(8, results[2][1][0].length)}`,
+          fontColor: '#A7C47B',
+          fontSize: '20px',
+          x: '10%',
+          y: '30%',
+        },
+        {
+          text: `PAGE 3: ${results[2][2][0].substring(8, results[2][2][0].length)}`,
+          fontColor: '#A7C47B',
+          fontSize: '20px',
+          x: '10%',
+          y: '40%',
+        },
+        {
+          text: `PAGE 4: ${results[2][3][0].substring(8, results[2][3][0].length)}`,
+          fontColor: '#A7C47B',
+          fontSize: '20px',
+          x: '10%',
+          y: '50%',
+        },
+        {
+          text: `PAGE 5: ${(results[2][4][0] == 'N/A') ? console.log("NA") : results[2][4][0].substring(8, results[2][4][0].length)}`,
+          fontColor: '#A7C47B',
+          fontSize: '20px',
+          x: '10%',
+          y: '60%',
+        },
+      ],
+      series: [
+        {
+          values: [results[4]["thisWeek"], results[4]["lastWeek"]],
+          tooltip: {
+            text: '%v',
+          },
+          backgroundColor: '#A7C67A',
+          borderRadiusTopLeft: '3px',
+          borderRadiusTopRight: '3px',
+          zIndex: 2,
+        },
+        {
+          values: [results[4]["thisWeek"] + results[4]["lastWeek"], results[4]["thisWeek"] + results[4]["lastWeek"]],
+          tooltip: {
+            visible: false,
+          },
+          backgroundColor: '#F2F2F2',
+          hoverState: {
+            visible: false,
+          },
+          zIndex: 1,
+        },
+      ],
+    },
+  ],
+};
+zingchart.render({
+  id: 'pageVisitsChart',
+  data: pageTrafficConfig,
+  height: '100%',
+  width: '100%',
+});
+})};
+
+getPageTrafficData(); 
+
+	let testPiConfig = {
+          type: 'pie',
+          backgroundColor: '#454754',
+          width: '100%',
+		  height: '100%',
+          plot: {
+            valueBox: {
+              visible: false
+            },
+            animation: {
+              delay: 0,
+              effect: 'ANIMATION_EXPAND_VERTICAL',
+              method: 'ANIMATION_LINEAR',
+              sequence: 'ANIMATION_BY_PLOT',
+              speed: '300'
+            }
+          },
+		  scale: {
+    values: [
+      'Current<br>MSCI EM 5% A-share<br>LC Inclusion',
+      'August 2021<br>MSCI EM 20% A-share<br>LC Inclusion',
+      'May 2022<br>MSCI EM 20% A-share<br>LC+MC Inclusion'
+    ],
+    item: {
+      fontWeight: 'bold',
+      fontSize: '13px',
+      color: '#000',
+      placement: 'top'
+    },
+    layout: '3x1',
+    sizeFactor: 0.8,
+  },
+          plotarea: {
+            margin: '10px 10px 0px 0px'
+          },
+          series: [{
+              text: 'Product 1',
+              values: [15, 12, 10],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#54ced4',
+                borderRadius: '6px',
+                fontColor: '#454754',
+                shadow: false
+              },
+              backgroundColor: '#57dce5',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            },
+            {
+              text: 'Product 2',
+              values: [18, 10, 1],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#796bdd',
+                borderRadius: '6px',
+                fontColor: '#ffffff',
+                shadow: false
+              },
+              backgroundColor: '#9688f7',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            },
+            {
+              text: 'Product 3',
+              values: [20, 2, 4],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#a03f9c',
+                borderRadius: '6px',
+                fontColor: '#ffffff',
+                shadow: false
+              },
+              backgroundColor: '#b659b4',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            },
+            {
+              text: 'Product 4',
+              values: [16, 15, 12],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#1b9ede',
+                borderRadius: '6px',
+                fontColor: '#ffffff',
+                shadow: false
+              },
+              backgroundColor: '#3bbcfc',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            },
+            {
+              text: 'Product 5',
+              values: [21, 22, 22],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#2f6672',
+                borderRadius: '6px',
+                fontColor: '#ffffff',
+                shadow: false
+              },
+              backgroundColor: '#6597a2',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            }
+          ]
+        }; 
+		let testPiConfig2 = {
+          type: 'pie',
+          backgroundColor: '#454754',
+          width: '100%',
+		  height: '20%',
+          title: {
+            backgroundColor: 'none',
+            fontColor: '#ffffff',
+            fontFamily: 'Arial',
+            fontWeight: 'normal',
+            height: '40px'
+          },
+          plot: {
+            valueBox: {
+              visible: false
+            },
+            animation: {
+              delay: 0,
+              effect: 'ANIMATION_EXPAND_VERTICAL',
+              method: 'ANIMATION_LINEAR',
+              sequence: 'ANIMATION_BY_PLOT',
+              speed: '300'
+            }
+          },
+          plotarea: {
+            margin: '20px 10px 0px 0px'
+          },
+          series: [{
+              text: 'Product 1',
+              values: [15],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#54ced4',
+                borderRadius: '6px',
+                fontColor: '#454754',
+                shadow: false
+              },
+              backgroundColor: '#57dce5',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            },
+            {
+              text: 'Product 2',
+              values: [18],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#796bdd',
+                borderRadius: '6px',
+                fontColor: '#ffffff',
+                shadow: false
+              },
+              backgroundColor: '#9688f7',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            },
+            {
+              text: 'Product 3',
+              values: [20],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#a03f9c',
+                borderRadius: '6px',
+                fontColor: '#ffffff',
+                shadow: false
+              },
+              backgroundColor: '#b659b4',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            },
+            {
+              text: 'Product 4',
+              values: [16],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#1b9ede',
+                borderRadius: '6px',
+                fontColor: '#ffffff',
+                shadow: false
+              },
+              backgroundColor: '#3bbcfc',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            },
+            {
+              text: 'Product 5',
+              values: [21],
+              tooltip: {
+                padding: '5px 10px',
+                backgroundColor: '#2f6672',
+                borderRadius: '6px',
+                fontColor: '#ffffff',
+                shadow: false
+              },
+              backgroundColor: '#6597a2',
+              borderColor: '#454754',
+              borderWidth: '1px',
+              shadow: false
+            }
+          ]
+        }; 
+		let finalConfig = {
+			backgroundColor: '#454754',
+			template: '1x3',
+			graphset: [testPiConfig, testPiConfig, testPiConfig],
+		}
+	
+    let getGeneralData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/general')
+    .then(res => res.json())
+    .then(results => {
+  let generalConfig = {
+    graphset:[
+    {
+      type: 'pie',
+      width: '100%',
+      height: '30%', 
+      x: '0%',
+      y:'3%',
+      backgroundColor:'#659c9e',
+      legend: {
+        align: 'right',
+        borderWidth: '0px',
+        item: {
+          cursor: 'pointer',
+          fontSize: '6%',
+          offsetX: '-3%',
+        },
+        layout: 'vertical',
+        marker: {
+          type: 'circle',
+          cursor: 'pointer',
+          size: '5%',
+        },
+        toggleAction: 'remove', // remove plot so it re-calculates percentage
+        verticalAlign: 'middle',
+      },
+      plot: {
+        tooltip: {
+          visible: false,
+        },
+        detached: false, // turn off click on slices
+         slice: 80// set hole size in middle of chart
+      },
+      series: [
+        {
+          values: [results[1][0]["googleCount"]],
+          backgroundColor: '#FE7A5D',
+        },
+        {
+          values: [results[1][0]["firefoxCount"]],
+          backgroundColor: '#69A8F8',
+        },
+        {
+          values: [results[1][0]["safariCount"]],
+          backgroundColor: '#54DBB9',
+        },
+        {
+          values: [results[1][0]["otherCount"]],
+          backgroundColor: '#FEDA60',
+        },
+      ],
+    },
+    {
+      type: 'pie',
+      width: '100%',
+      height: '30%', 
+      x: '0%',
+      y:'33%',
+      backgroundColor:'#659c9e',
+      legend: {
+        align: 'right',
+        borderWidth: '0px',
+        item: {
+          cursor: 'pointer',
+          fontSize: '6%',
+          offsetX: '-3%',
+        },
+        layout: 'vertical',
+        marker: {
+          type: 'circle',
+          cursor: 'pointer',
+          size: '5%',
+        },
+        toggleAction: 'remove', // remove plot so it re-calculates percentage
+        verticalAlign: 'middle',
+      },
+      plot: {
+        tooltip: {
+          visible: false,
+        },
+        detached: false, // turn off click on slices
+         slice: 80// set hole size in middle of chart
+      },
+      series: [
+        {
+          values: [results[0][0]['count']],
+          backgroundColor: '#FE7A5D',
+        },
+        {
+          values: [results[0][1]['count']],
+          backgroundColor: '#69A8F8',
+        },
+        {
+          values: [results[0][2]['count']],
+          backgroundColor: '#54DBB9',
+        },
+        {
+          values: [results[0][3]['count']],
+          backgroundColor: '#FEDA60',
+        },
+        {
+          values: [results[0][4]['count']],
+          backgroundColor: '#FEDA60',
+        },
+      ],
+    },
+    {
+      type: 'pie',
+      width: '100%',
+      height: '30%', 
+      x: '0%',
+      y:'63%',
+      backgroundColor:'#659c9e',
+      legend: {
+        align: 'right',
+        borderWidth: '0px',
+        item: {
+          cursor: 'pointer',
+          fontSize: '6%',
+          offsetX: '-3%',
+        },
+        layout: 'vertical',
+        marker: {
+          type: 'circle',
+          cursor: 'pointer',
+          size: '5%',
+        },
+        toggleAction: 'remove', // remove plot so it re-calculates percentage
+        verticalAlign: 'middle',
+      },
+      plot: {
+        tooltip: {
+          visible: false,
+        },
+        detached: false, // turn off click on slices
+         slice: 100,// set hole size in middle of chart
+      },
+      series: [
+        {
+          values: [results[2]["slow-2g"]],
+          backgroundColor: '#FE7A5D',
+        },
+        {
+          values: [results[2]["2g"]],
+          backgroundColor: '#69A8F8',
+        },
+        {
+          values: [results[2]["3g"]],
+          backgroundColor: '#54DBB9',
+        },
+        {
+          values: [results[2]["4g"]],
+          backgroundColor: '#FEDA60',
+        },
+      ],
+    },
+    ]
+  }
+
+  zingchart.render({
+      id: 'userAgentChart',
+      data: generalConfig,
+      height: '100%',
+      width: '100%',
+    });
+  })};
+
+  getGeneralData(); 
+  let getDimData = async() => { 
+    let a; 
+    await fetch('https://drakeomar.com/api/charts/dimensions')
+  .then(res => res.json())
+  .then(results => {
+  	// Use setdata to instantiate the chart
+  	a = results; 
+    console.log(results); 
+
+    let dimensionsConfig = {
+    "graphset": [
+        {
+            "type": "bar",
+            "background-color": "#659c9e",
+            "title": {
+                "text": "Traffic by Screen Dimensions",
+                "font-color": "#7E7E7E",
+                "backgroundColor": "none",
+                "font-size": "22px",
+                "alpha": 1,
+                "adjust-layout":true,
+            },
+            "plotarea": {
+                "margin": "dynamic"
+            },
+            
+            "plot": {   
+                "bars-space-left":0.15,
+                "bars-space-right":0.15,
+                "animation": {
+                    "effect": "ANIMATION_SLIDE_BOTTOM",
+                    "sequence": 0, 
+                    "speed": 800,
+                    "delay": 800
+                }
+            },
+            "scale-y": {
+                "line-color": "#7E7E7E",
+                "item": {
+                    "font-color": "#7e7e7e"
+                },
+                "guide": {
+                    "visible": true
+                },
+                "label": {
+                  "text": "# of Users",
+                  "font-family": "arial",
+                  "bold": true,
+                  "font-size": "14px",
+                  "font-color": "#7E7E7E",
+                },
+            },
+            "scaleX":{
+                "values": [
+                    "Phones",
+                    "Tablets",
+                    "Laptops",
+                    "Desktops+"
+                ],
+                "placement":"default",
+                "tick":{
+                    "size":58,
+                    "placement":"cross"
+                },
+                "itemsOverlap":true,
+                "item":{
+                    "offsetY":-55
+                }
+            },
+            "tooltip": {
+              "visible": false
+            },
+            "crosshair-x":{
+                "line-width":"100%",
+                "alpha":0.18,
+                "plot-label":{
+                  "header-text":"%kv Sales"
+                }
+            },
+            "series": [
+                {
+                    "values": [
+                        results["phoneCount"],
+                        results["tabletCount"],
+                        results["laptopCount"],
+                        results["desktopCount"]
+                    ],
+                    "borderRadiusTopLeft": 7,
+                    "alpha": 0.95,
+                    "background-color": "blue",
+                    "text": "Amazon"
+                }
+            ]
+        }
+    ]
+};
+
+    zingchart.render({ 
+      id : 'dimensionsChart', 
+      data : dimensionsConfig, 
+      height: '100%', 
+      width: '100%' 
+    });
+  }) };
+
+  getDimData(); 
+let pageVisitsConfig = {
+  backgroundColor: '#659c9e',
+  graphset: [
+    {
+      type: 'null',
+      backgroundColor: '#fbfcf7',
+      borderColor: '#384653',
+      borderRadius: '4px',
+      borderWidth: '1px',
+      height: '25%',
+      width: '15%',
+      x: '25%',
+      y: '3%',
+      title: {
+        text: 'GROCERY ORDERS',
+        backgroundColor: 'none',
+        fontColor: '#384653',
+        fontSize: '12px',
+        height: '30%',
+        textAlign: 'center',
+      },
+      subtitle: {
+        text: '5920',
+        bold: true,
+        fontColor: '#dd655f',
+        fontSize: '24px',
+        height: '32%',
+        paddingTop: '25%',
+        textAlign: 'center',
+      },
+    },
+    {
+      type: 'null',
+      backgroundColor: '#fbfcf7',
+      borderColor: '#384653',
+      borderRadius: '4px',
+      borderWidth: '1px',
+      height: '25%',
+      width: '15%',
+      x: '40%',
+      y: '3%',
+      title: {
+        text: 'GROCERY ORDERS',
+        backgroundColor: 'none',
+        fontColor: '#384653',
+        fontSize: '12px',
+        height: '30%',
+        textAlign: 'center',
+      },
+      subtitle: {
+        text: '5920',
+        bold: true,
+        fontColor: '#dd655f',
+        fontSize: '24px',
+        height: '32%',
+        paddingTop: '25%',
+        textAlign: 'center',
+      },
+    },
+    {
+      type: 'null',
+      backgroundColor: '#fbfcf7',
+      borderColor: '#384653',
+      borderRadius: '4px',
+      borderWidth: '1px',
+      height: '25%',
+      width: '15%',
+      x: '55%',
+      y: '3%',
+      title: {
+        text: 'GROCERY ORDERS',
+        backgroundColor: 'none',
+        fontColor: '#384653',
+        fontSize: '12px',
+        height: '30%',
+        textAlign: 'center',
+      },
+      subtitle: {
+        text: '5920',
+        bold: true,
+        fontColor: '#dd655f',
+        fontSize: '24px',
+        height: '32%',
+        paddingTop: '25%',
+        textAlign: 'center',
+      },
+    },
+    {
+      type: 'null',
+      backgroundColor: '#fbfcf7',
+      borderColor: '#384653',
+      borderRadius: '4px',
+      borderWidth: '1px',
+      height: '25%',
+      width: '15%',
+      x: '70%',
+      y: '3%',
+      title: {
+        text: 'GROCERY ORDERS',
+        backgroundColor: 'none',
+        fontColor: '#384653',
+        fontSize: '12px',
+        height: '30%',
+        textAlign: 'center',
+      },
+      subtitle: {
+        text: '5920',
+        bold: true,
+        fontColor: '#dd655f',
+        fontSize: '24px',
+        height: '32%',
+        paddingTop: '25%',
+        textAlign: 'center',
+      },
+    },
+    {
+      type: 'null',
+      backgroundColor: '#fbfcf7',
+      borderColor: '#384653',
+      borderRadius: '4px',
+      borderWidth: '1px',
+      height: '25%',
+      width: '15%',
+      x: '85%',
+      y: '3%',
+      title: {
+        text: 'GROCERY ORDERS',
+        backgroundColor: 'none',
+        fontColor: '#384653',
+        fontSize: '12px',
+        height: '30%',
+        textAlign: 'center',
+      },
+      subtitle: {
+        text: '5920',
+        bold: true,
+        fontColor: '#dd655f',
+        fontSize: '24px',
+        height: '32%',
+        paddingTop: '25%',
+        textAlign: 'center',
+      },
+    },
+{ //ring
+  type: 'ring',
+  x: '3%',
+  y: '3%',
+  width: '16%',
+  height: '100%',
+  globals: {
+    fontFamily: 'Lato',
+    fontWeight: 100,
+  },
+  backgroundColor: '#659c9e',
+  plot: {
+    tooltip: {
+      visible: false,
+    },
+    valueBox: {
+      backgroundColor: '#000000',
+      type: 'first',
+      text: "<span style='font-size:20px;'>402</span><br>Total Nodes",
+      connected: false,
+      fontColor: '#fff',
+      fontSize: '2%',
+      placement: 'center',
+      rules: [
+        {
+          rule: '%v > 50',
+          visible: false,
+        },
+      ],
+      visible: true,
+    },
+    animation: {
+      delay: 0,
+      effect: 'ANIMATION_EXPAND_VERTICAL',
+      method: 'ANIMATION_LINEAR',
+      sequence: 'ANIMATION_BY_PLOT',
+      speed: '600',
+    },
+    detach: false,
+    hoverState: {
+      visible: false,
+    },
+  },
+  plotarea: {
+    margin: 0,
+  },
+  series: [
+    {
+      values: [25],
+      backgroundColor: '#FDFD47',
+      borderColor: '#282E3D',
+      borderWidth: '2px',
+      shadow: false,
+    },
+    {
+      values: [75],
+      backgroundColor: '#35D884',
+      borderColor: '#282E3D',
+      borderWidth: '2px',
+      shadow: false,
+    },
+  ],
+},
+    {//line
+      type: 'line',
+      backgroundColor: '#659c9e',
+      borderColor: '#384653',
+      borderRadius: '4px',
+      borderWidth: '1px',
+      height: '68%',
+      width: '75%',
+      x: '25%',
+      y: '30%',
+      legend: {
+        backgroundColor: '#FFFFFF',
+        borderColor: '#FFFFFF',
+        borderRadius: '4px',
+        layout: 'float',
+        margin: 'auto auto 10% auto',
+        shadow: false,
+        toggleAction: 'remove',
+      },
+      plot: {
+        tooltip: {
+          text: '%v %k in %t',
+          borderRadius: '4px',
+          shadow: false,
+        },
+      },
+      plotarea: {
+        margin: '45px 40px 90px 60px',
+      },
+      scaleX: {
+        values: ['Bakery', 'Dairy', 'Meat', 'Produce', 'Liquor', 'Frozen'],
+        guide: {
+          visible: false,
+        },
+        item: {
+          fontColor: '#384653',
+        },
+        lineColor: '#b0aaab',
+        lineWidth: '1px',
+        tick: {
+          visible: false,
+        },
+      },
+      scaleY: {
+        values: '0:80:10',
+        guide: {
+          lineStyle: 'solid',
+          visible: true,
+        },
+        item: {
+          paddingRight: '5%',
+          fontColor: '#384653',
+        },
+        lineColor: '#FFFFFF',
+        lineWidth: '1px',
+        tick: {
+          visible: false,
+        },
+      },
+      series: [
+        {
+          text: 'Aisle 1',
+          values: [11, 26, 7, 44, 12, 30],
+          backgroundColor: '#4cc2bb',
+          legendMarker: {
+            borderColor: '#4cc2bb',
+          },
+        },
+        {
+          text: 'Aisle 2',
+          values: [9, 31, 12, 38, 19, 34],
+          backgroundColor: '#4c707e',
+          legendMarker: {
+            borderColor: '#4c707e',
+          },
+        },
+        {
+          text: 'Aisle 3',
+          values: [39, 65, 12, 58, 39, 24],
+          backgroundColor: '#dd655f',
+          legendMarker: {
+            borderColor: '#dd655f',
+          },
+        },
+        {
+          text: 'Aisle 4',
+          values: [11, 21, 17, 44, 22, 16],
+          backgroundColor: '#88a0a9',
+          legendMarker: {
+            borderColor: '#88a0a9',
+          },
+        },
+      ],
+    },
+  ],
+};
+
+
+
+    zingchart.loadModules('maps, maps-world-countries', function(e) {
+  zingchart.render({
+    id: 'mapChart',
+    data: {
+      shapes: [{
+        type: 'zingchart.maps',
+        options: {
+          name: 'world.countries'
+        }
+      }]
+    },
+    height: 400,
+    width: '100%'
+  });
+});
+
+
+        </script>
+    </body>
+</html>
